@@ -12,7 +12,7 @@ function addAPlayerName(event) {
   localStorage.setItem('localStoragePlayerName', JSON.stringify(playerNameVariable));
 
   if (localStorage.localStoragePlayerName) {
-    alert('Ready to whack some moles???');
+    alert('Welcome ' + JSON.parse(localStorage.localStoragePlayerName) + '! Ready to whack some moles???');
 
   }
 }
