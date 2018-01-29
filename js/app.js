@@ -1,15 +1,18 @@
-'use strict'
+'use strict';
 var numPoints = 0;
+var timesDrawn = 0;
+var gameLengthLimit = 600;
 var raf;
 var mouseX;
 var mouseY;
 var posNegIndicator = 1;
 var nIntervId;
+var arrayX = [0, 200, 400, 500, 600];
 
 
 //new mole image
-var imgMoleDwg =new Image();
-imgMoleDwg.src = 'mole_drawing.png';
+var imgMoleDwg = new Image();
+imgMoleDwg.src = 'assets/mole_drawing.png';
 
 //canvas traits
 var canvasWidth = 800;
@@ -21,24 +24,34 @@ var molePicHeight = 150;
 var molePicOffset = 25;
 
 //     beginning of draw 
-var canvas = document.getElementById('tutorial');
+var canvas = document.getElementById('game-screen');
 var ctx = canvas.getContext('2d');
 function draw() {
 
 
   //clear canvas and draw background
-  ctx.clearRect(0,0, canvasWidth, canvasHeight);
+  ctx.clearRect(0, 0, canvasWidth, canvasHeight);
   ctx.fillStyle = 'green';
   ctx.fillRect(0, 0, canvasWidth, canvasHeight);
 
   //draw point counter
   ctx.font = '48px sans-serif';
   ctx.fillStyle = 'white';
-  ctx.fillText('Point: ' + numPoints, 25, 375);
+  ctx.fillText('Point: ' + timesDrawn, 25, 375);
+
+  ctx.font = '48px sans-serif';
+  ctx.fillStyle = 'white';
+  ctx.fillText('Point: ' + numPoints, 25, 275);
 
 
   //draw pic of mole on canvas
   drawMole();
+
+  if(timesDrawn >= gameLengthLimit){
+    window.clearInterval(nIntervId);
+  } else {
+    timesDrawn++;
+  }
 
   //redraw frame
   raf = window.requestAnimationFrame(draw);
@@ -49,18 +62,23 @@ function draw() {
 
 //a timed interval function that changes from Pos to Neg(used in screen indicator)
 function intervalFunc(){
-  nIntervId = setInterval(posNegAlternate, 1000);
+  nIntervId = setInterval(posNegAlternate, 200);
 }
 
-
+var randIndex;
 function posNegAlternate(){
   posNegIndicator *= -1;
+  randIndex = Math.floor(Math.random() * Math.floor(arrayX.length));
 }
+
+
+  
+
 
 //Display mole on screen if POS Neg indicator is POS
 function drawMole(){
   if(posNegIndicator >= 0){
-    ctx.drawImage(imgMoleDwg, molePicOffset, molePicOffset, molePicWidth, molePicHeight);
+    ctx.drawImage(imgMoleDwg, molePicOffset + arrayX[randIndex], molePicOffset, molePicWidth, molePicHeight);
   }
 }
 
