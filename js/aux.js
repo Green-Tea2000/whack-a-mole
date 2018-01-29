@@ -1,24 +1,22 @@
 'use strict';
 
-var playerName = document.getElementById('player-Name-Input');
-var addPlayerButton = document.getElementById('addPlayer');
-console.log(playerName);
+var addPlayerUserName = document.getElementById('formPlayerName');
 
 
 //Add Player Name and Send to LOCAL STORAGE Event
 function addAPlayerName(event) {
   event.preventDefault();
+  console.log(event);
 
-  localStorage.setItem('localStoragePlayerName', JSON.stringify(playerName));
+  var playerNameVariable = event.target.playerNameInput.value;
+  console.log(playerNameVariable);
 
-  console.log(playerName);
+  localStorage.setItem('localStoragePlayerName', JSON.stringify(playerNameVariable));
+
   if (localStorage.localStoragePlayerName) {
     alert('Ready to whack some moles???');
 
   }
 }
 
-addPlayerButton.addEventListener('click', addAPlayerName);
-
-localStorage.dog = 'demi';
-localStorage.test = playerName;
+addPlayerUserName.addEventListener('submit', addAPlayerName);
