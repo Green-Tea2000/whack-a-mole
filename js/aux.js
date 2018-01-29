@@ -1,9 +1,7 @@
 'use strict';
-
+//Add Player Name and Send to LOCAL STORAGE Event
 var addPlayerUserName = document.getElementById('formPlayerName');
 
-
-//Add Player Name and Send to LOCAL STORAGE Event
 function addAPlayerName(event) {
   event.preventDefault();
   console.log(event);
