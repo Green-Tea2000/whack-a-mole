@@ -75,7 +75,6 @@ function posNegAlternate(){
 
   
 
-
 //Display mole on screen if POS Neg indicator is POS
 function drawMole(){
   if(posNegIndicator >= 0){
