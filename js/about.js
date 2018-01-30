@@ -2,7 +2,9 @@
 
 var portraits = ['assets/jennifer.png', 'assets/haron.png', 'assets/jose.png', 'assets/tyler.png', 'assets/patricia.png'];
 
-
+var bioS = document.getElementById('bioS');
+var bioH = document.getElementById('bioH');
+var bioP = document.getElementById('bioP');
 
 var imgPortraits = [];
 
@@ -13,7 +15,7 @@ imgHole.src = 'assets/hole.png';
 
 //canvas traits
 var canvasWidth = 960;
-var canvasHeight = 490;
+var canvasHeight = 560;
 var imgSize = 200;
 var mouseX;
 var mouseY;
@@ -24,10 +26,14 @@ var mouseY;
 var canvas = document.getElementById('game-screen');
 var ctx = canvas.getContext('2d');
 function draw() {
+  // Draw ABOUT US on top of PAGE
+  ctx.font = '48px sans-serif';
+  ctx.fillStyle = 'white';
+  ctx.fillText('ABOUT US ', 380, 50);
 
   //clear canvas and draw background
   ctx.clearRect(0, 0, canvasWidth, canvasHeight);
-  ctx.fillStyle = 'darkgreen';
+  ctx.fillStyle = 'green';
   ctx.fillRect(0, 0, canvasWidth, canvasHeight);
 
   //draw five holes
@@ -70,21 +76,20 @@ function getCursorPosition(event){
   console.log('x: ' + mouseX + ' y: ' + mouseY);
 }
 
-//check whether click was inside mole area
-// function hitOrMiss(){
-//   if((mouseX >= (picOffset + imgPortraits[0])
-//   && mouseX <= ((picOffset + imgPortraits[0]) + imgSize))
-//   && (mouseY >= picOffset)
-//   && mouseY <= (picOffset + imgSize)){
-//     console.log('hit');
-//   } else {
-//     console.log('miss');
-//   }
-// }
-function hitOrMiss(){
-  if(mouseX > 118 && mouseX < 275 && mouseY > 128 && mouseY < 275){
+
+
+function checkCursorP(){
+  if(mouseX > 125 && mouseX < 275 && mouseY > 126 && mouseY < 273){
+    bioH.textContent = 'Haron';
+    bioP.textContent = '';
+
     console.log('hit');
-  } else {
+  // }else if (mouseX > 118 && mouseX < 275 && mouseY > 128 && mouseY < 275){
+  //   bioH.textContent = 'Patrice';
+  //   bioP.textContent = 'I am an aspiring software developer who loves problem-solving and building products that are fun. Before Code Fellows I worked at Bellevue College in the Disability Resource Center. I live in Issaquah with a cat and a dog. I look forward to improving myself through coding.';
+
+    console.log('hit');
+  }else{
     console.log('miss');
   }
 }
@@ -92,7 +97,7 @@ function hitOrMiss(){
 //Eventlistener for clicks to run corresponding functions
 canvas.addEventListener('click', function(e){
   getCursorPosition(e);
-  hitOrMiss();
+  checkCursorP();
 });
 
 
