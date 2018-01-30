@@ -1,4 +1,3 @@
-
 'use strict';
 var numPoints = 0;
 var timesDrawn = 0;
@@ -68,7 +67,6 @@ function draw() {
   } else {
     new Game(localStorage.localStoragePlayerName, numPoints);
   }
-  
 }
 //       end of draw function
 
