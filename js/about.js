@@ -15,6 +15,9 @@ imgHole.src = 'assets/hole.png';
 var canvasWidth = 960;
 var canvasHeight = 490;
 var imgSize = 200;
+var mouseX;
+var mouseY;
+
 
 
 //     beginning of draw
@@ -42,9 +45,9 @@ function draw() {
 }
 //       end of draw function
 
-
+var picOffset = 50;
 function drawPortraits(){
-  var picOffset = 50;
+  
 
   
   for (var i in portraits) {
@@ -58,6 +61,41 @@ function drawPortraits(){
   ctx.drawImage(imgPortraits[3], 0, 0, imgSize, imgSize, 200 + picOffset / 2 , 280 + picOffset / 2, imgSize - picOffset, imgSize - picOffset);
   ctx.drawImage(imgPortraits[4], 0, 0, imgSize, imgSize, 560 + picOffset / 2 , 280 + picOffset / 2, imgSize - picOffset, imgSize - picOffset);
 }
+
+//get cursor Postion
+function getCursorPosition(event){
+  var rect = canvas.getBoundingClientRect();
+  mouseX = event.clientX - rect.left;
+  mouseY = event.clientY - rect.top;
+  console.log('x: ' + mouseX + ' y: ' + mouseY);
+}
+
+//check whether click was inside mole area
+// function hitOrMiss(){
+//   if((mouseX >= (picOffset + imgPortraits[0])
+//   && mouseX <= ((picOffset + imgPortraits[0]) + imgSize))
+//   && (mouseY >= picOffset)
+//   && mouseY <= (picOffset + imgSize)){
+//     console.log('hit');
+//   } else {
+//     console.log('miss');
+//   }
+// }
+function hitOrMiss(){
+  if(mouseX > 118 && mouseX < 275 && mouseY > 128 && mouseY < 275){
+    console.log('hit');
+  } else {
+    console.log('miss');
+  }
+}
+
+//Eventlistener for clicks to run corresponding functions
+canvas.addEventListener('click', function(e){
+  getCursorPosition(e);
+  hitOrMiss();
+});
+
+
 
 draw();
 
