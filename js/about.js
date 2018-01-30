@@ -24,7 +24,7 @@ function draw() {
 
   //clear canvas and draw background
   ctx.clearRect(0, 0, canvasWidth, canvasHeight);
-  ctx.fillStyle = 'darkgreen';
+  ctx.fillStyle = 'green';
   ctx.fillRect(0, 0, canvasWidth, canvasHeight);
 
   //draw five holes

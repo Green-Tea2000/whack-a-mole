@@ -1,29 +1,37 @@
 'use strict';
 var numPoints = 0;
 var timesDrawn = 0;
-var gameLengthLimit = 600;
+var gameLengthLimit = 700;
 var raf;
 var nIntervId;
 var mouseX;
 var mouseY;
-var arrayX = [0, 250, 500]; // points that mole can be drawn from
+var arrayX = [25, 120, 250, 450, 500, 700]; // x coordinates of holes and possible mole locations
+var arrayY = [25, 170, 250, 50, 350, 100]; // y coordinates of holes and possible mole locations
 var randIndex;
-var gameSpeed = 500; // how often a new mole is redrawm
+var gameSpeed = 900; // how often a new mole is redrawm
 var addPlayerUserName = document.getElementById('formPlayerName');
 
 //new mole image
 var imgMoleDwg = new Image();
-imgMoleDwg.src = 'assets/mole_drawing.png';
+imgMoleDwg.src = 'assets/mole_and_hole_pic.png';
 imgMoleDwg.alt = 'mole pic';
+
+//hole image
+var imgHole = new Image();
+imgHole.src = 'assets/hole_pic.png';
 
 //canvas traits
 var canvasWidth = 960;
-var canvasHeight = 600;
+var canvasHeight = 560;
 
-//mole pic traits
-var molePicWidth = 100;
+//pic traits
+var molePicWidth = 150;
 var molePicHeight = 150;
 var molePicOffset = 25;
+
+var picWidth = 150;
+var picHeight = 150;
 
 // GameRecord.allGames array - needs eventually to check if local storage of this exists and if so set this equal to that.
 GameRecord.allGames = [];
@@ -37,7 +45,7 @@ function GameRecord (name, score){
 }
 
 
-//     beginning of draw 
+//     beginning of draw
 var canvas = document.getElementById('game-screen');
 var ctx = canvas.getContext('2d');
 function draw() {
@@ -46,11 +54,16 @@ function draw() {
   ctx.fillStyle = 'green';
   ctx.fillRect(0, 0, canvasWidth, canvasHeight);
 
+  //draw holes
+  for (var i in arrayX){
+    drawHole(arrayX[i] + molePicOffset, arrayY[i] + molePicOffset);
+  }
+
   //draw point counter
-  ctx.font = '48px sans-serif';
+  ctx.font = '28px sans-serif';
   ctx.fillStyle = 'white';
-  ctx.fillText('Points: ' + numPoints, 25, 275);
-  ctx.fillText('Timer: ' + (gameLengthLimit - timesDrawn), 25, 375);
+  ctx.fillText('Points: ' + numPoints, 25, 535);
+  ctx.fillText('Timer: ' + (gameLengthLimit - timesDrawn), 175, 535);
 
   //draw pic of mole on canvas
   drawMole();
@@ -84,8 +97,14 @@ function newXIndex(){
 
 //Display mole on screen if POS Neg indicator is POS
 function drawMole(){
-  ctx.drawImage(imgMoleDwg, molePicOffset + arrayX[randIndex], molePicOffset, molePicWidth, molePicHeight);
+  ctx.drawImage(imgMoleDwg, molePicOffset + arrayX[randIndex], molePicOffset + arrayY[randIndex], molePicWidth, molePicHeight);
 }
+
+//function to draw hole
+function drawHole(x,y){
+  ctx.drawImage(imgHole, x, y, picWidth, picHeight);
+}
+
 
 //get cursor Postion
 function getCursorPosition(event){
@@ -99,8 +118,8 @@ function getCursorPosition(event){
 function hitOrMiss(){
   if((mouseX >= (molePicOffset + arrayX[randIndex])
   && mouseX <= ((molePicOffset + arrayX[randIndex]) + molePicWidth))
-  && (mouseY >= molePicOffset)
-  && mouseY <= (molePicOffset + molePicHeight)){
+  && (mouseY >= molePicOffset + arrayY[randIndex])
+  && mouseY <= (molePicOffset + arrayY[randIndex] + molePicHeight)){
     // console.log('hit');
     numPoints++;
   } else {
