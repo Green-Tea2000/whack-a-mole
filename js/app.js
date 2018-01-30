@@ -5,7 +5,6 @@ var gameLengthLimit = 600;
 var raf;
 var mouseX;
 var mouseY;
-// var posNegIndicator = 1;
 var nIntervId;
 var arrayX = [0, 250, 500];
 var randIndex;
@@ -59,21 +58,17 @@ function draw() {
   //draw pic of mole on canvas
   drawMole();
 
-  // // check if time is up
-  // checkIfTimeIsUp();
-
-
-
-  //redraw frame
+  // redraw frame until time is up
   if(timesDrawn < 300){
     raf = window.requestAnimationFrame(draw);
     timesDrawn++;
   } else {
-    console.log('raf', raf, 'timesDrawn', timesDrawn);
+    // cancel setInterval
+    clearInterval(nIntervId);
+    // console.log('raf', raf, 'timesDrawn', timesDrawn);
     new Game(JSON.parse(localStorage.localStoragePlayerName), numPoints);
     timesDrawn = 0;
-    raf = 0;
-    console.log('raf', raf, 'timesDrawn', timesDrawn);
+    // console.log('raf', raf, 'timesDrawn', timesDrawn);
   }
 }
 //       end of draw function
@@ -87,6 +82,7 @@ function intervalFunc(){
 //create random number for index
 function newXIndex(){
   randIndex = Math.floor(Math.random() * Math.floor(arrayX.length));
+  console.log('new X Index', randIndex);
 }
 
 //Display mole on screen if POS Neg indicator is POS
@@ -99,7 +95,7 @@ function getCursorPosition(event){
   var rect = canvas.getBoundingClientRect();
   mouseX = event.clientX - rect.left;
   mouseY = event.clientY - rect.top;
-  console.log('x: ' + mouseX + ' y: ' + mouseY);
+  // console.log('x: ' + mouseX + ' y: ' + mouseY);
 }
 
 //check whether click was inside mole area
@@ -108,10 +104,10 @@ function hitOrMiss(){
   && mouseX <= ((molePicOffset + arrayX[randIndex]) + molePicWidth))
   && (mouseY >= molePicOffset)
   && mouseY <= (molePicOffset + molePicHeight)){
-    console.log('hit');
+    // console.log('hit');
     numPoints++;
   } else {
-    console.log('miss');
+    // console.log('miss');
   }
 }
 
