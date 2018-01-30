@@ -1,6 +1,10 @@
 'use strict';
 
-var portraits = ['assets/jennifer.jpg', 'assets/haron.jpg', 'assets/jose.jpg', 'assets/tyler.jpg', 'assets/patricia.jpg'];
+var portraits = ['assets/jennifer.png', 'assets/haron.png', 'assets/jose.png', 'assets/tyler.png', 'assets/patricia.png'];
+
+
+
+var imgPortraits = [];
 
 //new hole image
 
@@ -9,8 +13,9 @@ imgHole.src = 'assets/hole.png';
 
 //canvas traits
 var canvasWidth = 960;
-var canvasHeight = 580;
+var canvasHeight = 490;
 var imgSize = 200;
+
 
 //     beginning of draw
 var canvas = document.getElementById('game-screen');
@@ -23,7 +28,7 @@ function draw() {
   ctx.fillRect(0, 0, canvasWidth, canvasHeight);
 
   //draw five holes
-  ctx.drawImage(imgHole, 380, 10, imgSize, imgSize);
+  ctx.drawImage(imgHole, 380, 50, imgSize, imgSize);
   ctx.drawImage(imgHole, 100, 100, imgSize, imgSize);
   ctx.drawImage(imgHole, 660, 100, imgSize, imgSize);
   ctx.drawImage(imgHole, 200, 280, imgSize, imgSize);
@@ -33,7 +38,7 @@ function draw() {
   drawPortraits();
 
   //redraw frame
-  raf = window.requestAnimationFrame(draw);
+  window.requestAnimationFrame(draw);
 }
 //       end of draw function
 
@@ -41,13 +46,13 @@ function draw() {
 function drawPortraits(){
   var picOffset = 50;
 
-  var imgPortraits = [];
+  
   for (var i in portraits) {
     imgPortraits[i] = new Image();
     imgPortraits[i].src = portraits[i];
   }
 
-  ctx.drawImage(imgPortraits[0], 0, 0, imgSize, imgSize, 380 + picOffset / 2 , 10 + picOffset / 2, imgSize - picOffset, imgSize - picOffset);
+  ctx.drawImage(imgPortraits[0], 0, 0, imgSize, imgSize, 380 + picOffset / 2 , 50 + picOffset / 2, imgSize - picOffset, imgSize - picOffset);
   ctx.drawImage(imgPortraits[1], 0, 0, imgSize, imgSize, 100 + picOffset / 2 , 100 + picOffset / 2, imgSize - picOffset, imgSize - picOffset);
   ctx.drawImage(imgPortraits[2], 0, 0, imgSize, imgSize, 660 + picOffset / 2 , 100 + picOffset / 2, imgSize - picOffset, imgSize - picOffset);
   ctx.drawImage(imgPortraits[3], 0, 0, imgSize, imgSize, 200 + picOffset / 2 , 280 + picOffset / 2, imgSize - picOffset, imgSize - picOffset);
@@ -55,3 +60,4 @@ function drawPortraits(){
 }
 
 draw();
+
