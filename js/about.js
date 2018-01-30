@@ -51,18 +51,14 @@ function draw() {
 function drawPortraits() {
   var picOffset = 50;
 
-<<<<<<< HEAD
 
-=======
   
->>>>>>> 2186b7f5472ed51b83aa9aa191ca284c5be6a9c6
   for (var i in portraits) {
     imgPortraits[i] = new Image();
     imgPortraits[i].src = portraits[i];
     imgPortraits[i].getI
   }
 
-<<<<<<< HEAD
   ctx.drawImage(imgPortraits[0], 0, 0, imgSize, imgSize, 380 + picOffset / 2, 10 + picOffset / 2, imgSize - picOffset, imgSize - picOffset);
 
   ctx.drawImage(imgPortraits[1], 0, 0, imgSize, imgSize, 100 + picOffset / 2, 100 + picOffset / 2, imgSize - picOffset, imgSize - picOffset);
@@ -98,7 +94,6 @@ canvas.addEventListener('mousedown',positionHandler)
 
 //if mouse position equal any quadernated where the picture are run another function. that displays the paragraph next to the images that was closet to the click.
 draw();
-=======
   ctx.drawImage(imgPortraits[0], 0, 0, imgSize, imgSize, 380 + picOffset / 2 , 50 + picOffset / 2, imgSize - picOffset, imgSize - picOffset);
   ctx.drawImage(imgPortraits[1], 0, 0, imgSize, imgSize, 100 + picOffset / 2 , 100 + picOffset / 2, imgSize - picOffset, imgSize - picOffset);
   ctx.drawImage(imgPortraits[2], 0, 0, imgSize, imgSize, 660 + picOffset / 2 , 100 + picOffset / 2, imgSize - picOffset, imgSize - picOffset);
@@ -108,4 +103,3 @@ draw();
 
 draw();
 
->>>>>>> 2186b7f5472ed51b83aa9aa191ca284c5be6a9c6
