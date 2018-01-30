@@ -1,3 +1,4 @@
+
 'use strict';
 var numPoints = 0;
 var timesDrawn = 0;
