@@ -8,6 +8,34 @@ header, main, footer {
   width: 960px;
   margin: 0 auto;
 }
+
+
+section{
+  border: 1px solid black;
+  margin:25px
+  
+}
+
+section h2 {
+  text-align:center; position:relative
+}
+
+section h2 span {
+  background-color: white; position: relative; top: -10px; padding: 0 10px;
+  font-size:20px;
+}
+
+/* table, th, td {
+  border: 1px solid black;
+  font: 20px small-caps bold
+} */
+
+table, th{
+  margin: 5px;
+  padding: 2px 10px;
+
+}
+
 header {
   border-bottom: 1px solid #eee;
   padding-bottom: 15px;
@@ -31,4 +59,19 @@ nav a, h1 a {
 nav a:hover, nav a:focus {
   color:brown;
 }
+
+
+h2 {
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 15px;
+}
+#instructions {
+  margin-left: 200px;
+  margin-bottom: 15px;
+}
+h3 {
+  font-size: 22px;
+}
+
 
