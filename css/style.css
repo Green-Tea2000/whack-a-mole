@@ -59,6 +59,8 @@ nav a, h1 a {
 nav a:hover, nav a:focus {
   color:brown;
 }
+
+
 h2 {
   font-size: 20px;
   text-align: center;
@@ -71,4 +73,5 @@ h2 {
 h3 {
   font-size: 22px;
 }
+
 
