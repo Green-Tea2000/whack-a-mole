@@ -1,3 +1,17 @@
+/*
+some possible colors: 
+#27120f  dark brown
+#261210 dark brown 2
+#4a231f med red-brown
+
+#372a1a dk brown 3
+#614926 md brown
+#917d54 beige
+#ab9976 light beige
+#eddfc3 cream
+*/
+
+
 * {
   box-sizing: border-box;
 }
@@ -45,6 +59,10 @@ h1 {
   text-align: center;
   font-variant: small-caps;
 }
+header h1 {
+  font-family: frijole, sans-serif;
+  color: #372a1a;
+}
 nav ul {
   text-align: center;
   margin-top: 15px;
@@ -55,6 +73,7 @@ nav li {
 }
 nav a, h1 a {
   text-decoration: none;
+  color: #372a1a;
 }
 nav a:hover, nav a:focus {
   color:brown;
