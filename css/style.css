@@ -25,11 +25,6 @@ section h2 span {
   font-size:20px;
 }
 
-/* table, th, td {
-  border: 1px solid black;
-  font: 20px small-caps bold
-} */
-
 table, th{
   margin: 5px;
   padding: 2px 10px;
@@ -72,3 +67,9 @@ h3 {
   font-size: 22px;
 }
 
+#leaveScorePage {
+  background-color: rgb(77, 1, 148);
+  font-family: 'Shrikhand', cursive;
+  font-size: 24px;
+  color: white;
+}
