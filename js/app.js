@@ -1,3 +1,4 @@
+
 'use strict';
 
 var numPoints = 0;
@@ -71,9 +72,6 @@ function posNegAlternate(){
   posNegIndicator *= -1;
   randIndex = Math.floor(Math.random() * Math.floor(arrayX.length));
 }
-
-
-  
 
 
 //Display mole on screen if POS Neg indicator is POS

@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/style.css">
-  </head>
-  <body>
+
+<head>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
   <header>
     <h1><a href="index.html">Whack -a- Mole</a></h1>
     <nav>
@@ -19,9 +21,21 @@
     <h1>Scores</h1>
     <canvas>
     </canvas>
+    <section id="tabelSection">
+      <h2>
+        <span id="user-name">"Username" + Score</span>
+      </h2>
+      <table id="tableId">
+      </table>
+    </section>
   </main>
   <footer>
+    <button id="leaveScorePage">Back to Game</button>
   </footer>
-  <script src="js/app.js"></script>
-  </body>
+  <script src="js/score.js"></script>
+</body>
 <html>
+
+<!-- #tableSection{display:block; margin:25px}
+#tableSection h2{font-size:15px; text-align:center; border-bottom:1px solid red; position:relative; }
+#tableSection h2 span { background-color: white; position: relative; top: 10px; padding: 0 10px;} -->
