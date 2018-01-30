@@ -2,14 +2,15 @@
 var numPoints = 0;
 var timesDrawn = 0;
 var gameLengthLimit = 600;
-var raf = 0;
+var raf;
 var mouseX;
 var mouseY;
 // var posNegIndicator = 1;
 var nIntervId;
 var arrayX = [0, 250, 500];
 var randIndex;
-var gameSpeed = 1000;
+var gameSpeed = 2000;
+var addPlayerUserName = document.getElementById('formPlayerName');
 
 //new mole image
 var imgMoleDwg = new Image();
@@ -32,10 +33,10 @@ function Game (name, score){
   this.name = name;
   this.score = score;
   Game.allGames.push(this);
+  localStorage.arrayOfGameObjects = JSON.stringify(Game.allGames);
 }
 
 // put Game.allGames in lcoalstorage
-
 
 //     beginning of draw 
 var canvas = document.getElementById('game-screen');
@@ -53,7 +54,7 @@ function draw() {
 
   ctx.font = '48px sans-serif';
   ctx.fillStyle = 'white';
-  ctx.fillText('Timer: ' + timesDrawn, 25, 375);
+  ctx.fillText('Timer: ' + (300 - timesDrawn), 25, 375);
 
   //draw pic of mole on canvas
   drawMole();
@@ -61,11 +62,18 @@ function draw() {
   // // check if time is up
   // checkIfTimeIsUp();
 
+
+
   //redraw frame
-  if(raf < 300){
+  if(timesDrawn < 300){
     raf = window.requestAnimationFrame(draw);
+    timesDrawn++;
   } else {
-    new Game(localStorage.localStoragePlayerName, numPoints);
+    console.log('raf', raf, 'timesDrawn', timesDrawn);
+    new Game(JSON.parse(localStorage.localStoragePlayerName), numPoints);
+    timesDrawn = 0;
+    raf = 0;
+    console.log('raf', raf, 'timesDrawn', timesDrawn);
   }
 }
 //       end of draw function
@@ -107,22 +115,50 @@ function hitOrMiss(){
   }
 }
 
-//Eventlistener for clicks to run corresponding functions
+// function for players to set their name, stores name in local storeage
+function addAPlayerName(event) {
+  event.preventDefault();
+  console.log(event);
+
+  var playerNameVariable = event.target.playerNameInput.value;
+  console.log(playerNameVariable);
+
+  localStorage.setItem('localStoragePlayerName', JSON.stringify(playerNameVariable));
+  
+  // Function check for username, if exists start game
+  //add a playename
+  if (localStorage.localStoragePlayerName) {
+    // alert('Welcome ' + JSON.parse(localStorage.localStoragePlayerName) + '! Ready to whack some moles???');
+    numPoints = 0;
+    raf = 0;
+    timesDrawn = 0;
+    console.log('raf', raf);
+    intervalFunc();
+    draw();
+  } else {
+    alert('Please enter a player name to start game.');
+  }
+}
+
+
+
+// Eventlistener for clicks to run corresponding functions
 canvas.addEventListener('click', function(e){
   getCursorPosition(e);
   hitOrMiss();
 });
+
+// Event listen for setting user name
+addPlayerUserName.addEventListener('submit', addAPlayerName);
+
 
 //when timer reaches certian limit stop user from being able to get more points
 // Option.1 remove event listener
 // O2. change event listener
 // O3. establish var ifTime <
 
-intervalFunc();
 
 // draw canvas on page load
-draw();
-    
 
 // function checkIfTimeIsUp() {
 //   // if(timesDrawn === gameLengthLimit){
