@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Frijole|Merriweather+Sans" rel="stylesheet">
+  </head>
+  <body>
+  <header>
+    <h1><a href="index.html">Whack -a- Mole</a></h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="score.html">Scores</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <h2>Welcome, new mole hunter! Read instructions below, and then enter your name when you are ready to play!</h2>
+    <ul id="instructions">
+      <li>The moles will appear out of the displayed holes, one at a time</li>
+      <li>Whack as many as possible, by clicking on the mole picture, before they slink back in to hiding!</li>
+    </ul>
+    
+    <form id="formPlayerName">
+      <fieldset>
+
+        <label for="player-Name">Player Name:</label>
+        <input name="playerNameInput" id="playerNameInput" type="text" required />
+
+        <button type="submit" id="addPlayer">Let's Play!</button>
+      </fieldset>
+    </form>
+
+    <canvas id="game-screen" width="960" height="600">
+    </canvas>
+    
+  </main>
+  <footer>
+  </footer>
+  
+  <script src="js/app.js"></script>
+  <script src="js/aux.js"></script>
+  </body>
+<html>
