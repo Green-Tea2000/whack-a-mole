@@ -3,39 +3,39 @@ var numPoints = 0;
 var timesDrawn = 0;
 var gameLengthLimit = 600;
 var raf;
+var nIntervId;
 var mouseX;
 var mouseY;
-var nIntervId;
-var arrayX = [0, 250, 500];
+var arrayX = [0, 250, 500]; // points that mole can be drawn from
 var randIndex;
-var gameSpeed = 2000;
+var gameSpeed = 500; // how often a new mole is redrawm
 var addPlayerUserName = document.getElementById('formPlayerName');
 
 //new mole image
 var imgMoleDwg = new Image();
 imgMoleDwg.src = 'assets/mole_drawing.png';
+imgMoleDwg.alt = 'mole pic';
 
 //canvas traits
-var canvasWidth = 800;
-var canvasHeight = 400;
+var canvasWidth = 960;
+var canvasHeight = 600;
 
 //mole pic traits
 var molePicWidth = 100;
 var molePicHeight = 150;
 var molePicOffset = 25;
 
-// Game.allGames array - needs eventually to check if local storage of this exists and if so set this equal to that.
-Game.allGames = [];
+// GameRecord.allGames array - needs eventually to check if local storage of this exists and if so set this equal to that.
+GameRecord.allGames = [];
 
 // Game constructor
-function Game (name, score){
+function GameRecord (name, score){
   this.name = name;
   this.score = score;
-  Game.allGames.push(this);
-  localStorage.arrayOfGameObjects = JSON.stringify(Game.allGames);
+  GameRecord.allGames.push(this);
+  localStorage.arrayOfGameObjects = JSON.stringify(GameRecord.allGames); // put GameRecord.allGames in lcoalstorage
 }
 
-// put Game.allGames in lcoalstorage
 
 //     beginning of draw 
 var canvas = document.getElementById('game-screen');
@@ -50,23 +50,20 @@ function draw() {
   ctx.font = '48px sans-serif';
   ctx.fillStyle = 'white';
   ctx.fillText('Points: ' + numPoints, 25, 275);
-
-  ctx.font = '48px sans-serif';
-  ctx.fillStyle = 'white';
-  ctx.fillText('Timer: ' + (300 - timesDrawn), 25, 375);
+  ctx.fillText('Timer: ' + (gameLengthLimit - timesDrawn), 25, 375);
 
   //draw pic of mole on canvas
   drawMole();
 
   // redraw frame until time is up
-  if(timesDrawn < 300){
+  if(timesDrawn < gameLengthLimit){
     raf = window.requestAnimationFrame(draw);
     timesDrawn++;
   } else {
     // cancel setInterval
     clearInterval(nIntervId);
     // console.log('raf', raf, 'timesDrawn', timesDrawn);
-    new Game(JSON.parse(localStorage.localStoragePlayerName), numPoints);
+    new GameRecord(JSON.parse(localStorage.localStoragePlayerName), numPoints);
     timesDrawn = 0;
     // console.log('raf', raf, 'timesDrawn', timesDrawn);
   }
@@ -132,7 +129,7 @@ function addAPlayerName(event) {
     intervalFunc();
     draw();
   } else {
-    alert('Please enter a player name to start game.');
+    alert('Please enter a player name to start GameRecord.');
   }
 }
 
@@ -166,7 +163,7 @@ addPlayerUserName.addEventListener('submit', addAPlayerName);
 //     window.cancelAnimationFrame(raf);
 //     console.log(nIntervId);
 //     new Game(localStorage.localStoragePlayerName, numPoints);
-//     // console.log('just made an object: ' + Game.allGames);
+//     // console.log('just made an object: ' + GameRecord.allGames);
 //   } else {
 //     timesDrawn++;
 //   }
