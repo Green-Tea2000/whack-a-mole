@@ -1,5 +1,4 @@
 'use strict';
-
 var numPoints = 0;
 var timesDrawn = 0;
 var gameLengthLimit = 600;
@@ -8,7 +7,7 @@ var mouseX;
 var mouseY;
 var posNegIndicator = 1;
 var nIntervId;
-var arrayX = [0, 200, 400, 500, 600];
+var arrayX = [0, 250, 500];
 
 
 //new mole image
@@ -34,6 +33,7 @@ function draw() {
   ctx.clearRect(0, 0, canvasWidth, canvasHeight);
   ctx.fillStyle = 'green';
   ctx.fillRect(0, 0, canvasWidth, canvasHeight);
+
 
   //draw point counter
   ctx.font = '48px sans-serif';
@@ -63,7 +63,7 @@ function draw() {
 
 //a timed interval function that changes from Pos to Neg(used in screen indicator)
 function intervalFunc(){
-  nIntervId = setInterval(posNegAlternate, 200);
+  nIntervId = setInterval(posNegAlternate, 1500);
 }
 
 var randIndex;
@@ -94,7 +94,7 @@ function getCursorPosition(event){
 
 //check whether click was inside mole area
 function hitOrMiss(){
-  if((mouseX >= molePicOffset && mouseX <= (molePicOffset + molePicWidth))
+  if((mouseX >= molePicOffset + arrayX[randIndex] && mouseX <= ((molePicOffset + arrayX[randIndex]) + molePicWidth))
   && (mouseY >= molePicOffset && mouseY <= (molePicOffset + molePicHeight))
   && (posNegIndicator >= 0)){
     console.log('hit');
@@ -111,7 +111,3 @@ canvas.addEventListener('click', function(e){
 });
 intervalFunc();
 draw();
-
-
-
-
