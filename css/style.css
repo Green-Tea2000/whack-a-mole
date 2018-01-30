@@ -54,8 +54,6 @@ nav a, h1 a {
 nav a:hover, nav a:focus {
   color:brown;
 }
-
-
 h2 {
   font-size: 20px;
   text-align: center;
@@ -69,13 +67,9 @@ h3 {
   font-size: 22px;
 }
 
-<<<<<<< HEAD
-#leaveScorePage {
+button {
   background-color: rgb(77, 1, 148);
   font-family: 'Shrikhand', cursive;
   font-size: 24px;
   color: white;
 }
-=======
-
->>>>>>> 9b541bd9235689311d958cc80bc60406d9843f1e
