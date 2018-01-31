@@ -66,8 +66,6 @@ var ctx = canvas.getContext('2d');
 function draw() {
   //clear canvas and draw background
   ctx.clearRect(0, 0, canvasWidth, canvasHeight);
- // ctx.fillStyle = 'green';
-  //ctx.fillRect(0, 0, canvasWidth, canvasHeight);
   
   //draw holes
   for (var i in arrayX){
@@ -173,6 +171,7 @@ function addAPlayerName(event) {
   } else {
     alert('Please enter a player name to start GameRecord.');
   }
+  window.scrollTo(0,document.body.scrollHeight);
 }
 
 // Eventlistener for clicks to run corresponding functions
@@ -185,4 +184,3 @@ canvas.addEventListener('click', function(e){
 addPlayerUserName.addEventListener('submit', addAPlayerName);
 
 loadLocalStoreage();
-draw();
