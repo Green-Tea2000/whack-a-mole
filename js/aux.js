@@ -1,20 +1,20 @@
-'use strict';
-//Add Player Name and Send to LOCAL STORAGE Event
-var addPlayerUserName = document.getElementById('formPlayerName');
+// 'use strict';
+// //Add Player Name and Send to LOCAL STORAGE Event
+// var addPlayerUserName = document.getElementById('formPlayerName');
 
-function addAPlayerName(event) {
-  event.preventDefault();
-  console.log(event);
+// function addAPlayerName(event) {
+//   event.preventDefault();
+//   console.log(event);
 
-  var playerNameVariable = event.target.playerNameInput.value;
-  console.log(playerNameVariable);
+//   var playerNameVariable = event.target.playerNameInput.value;
+//   console.log(playerNameVariable);
 
-  localStorage.setItem('localStoragePlayerName', JSON.stringify(playerNameVariable));
+//   localStorage.setItem('localStoragePlayerName', JSON.stringify(playerNameVariable));
 
-  if (localStorage.localStoragePlayerName) {
-    alert('Welcome ' + JSON.parse(localStorage.localStoragePlayerName) + '! Ready to whack some moles???');
+//   if (localStorage.localStoragePlayerName) {
+//     alert('Welcome ' + JSON.parse(localStorage.localStoragePlayerName) + '! Ready to whack some moles???');
 
-  }
-}
+//   }
+// }
 
-addPlayerUserName.addEventListener('submit', addAPlayerName);
+// addPlayerUserName.addEventListener('submit', addAPlayerName);

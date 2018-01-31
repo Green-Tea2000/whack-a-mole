@@ -3,6 +3,7 @@
   <head>
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Frijole|Merriweather+Sans" rel="stylesheet">
   </head>
   <body>
   <header>
@@ -24,16 +25,15 @@
     
     <form id="formPlayerName">
       <fieldset>
-        <legend>Player Name</legend>
 
         <label for="player-Name">Player Name:</label>
-        <input name="playerNameInput" id="playerNameInput" type="text" />
+        <input name="playerNameInput" id="playerNameInput" type="text" required />
 
         <button type="submit" id="addPlayer">Let's Play!</button>
       </fieldset>
     </form>
 
-    <canvas id="game-screen" width="960" height="600">
+    <canvas id="game-screen" width="960" height="560">
     </canvas>
     
   </main>
