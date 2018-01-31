@@ -9,21 +9,24 @@ var mouseY;
 var arrayX = [25, 120, 250, 450, 500, 700]; // x coordinates of holes and possible mole locations
 var arrayY = [25, 170, 250, 50, 350, 100]; // y coordinates of holes and possible mole locations
 var randIndex;
-var gameSpeed = 900; // how often a new mole is redrawm
+var gameSpeed = 2000; // how often a new mole is redrawm
 var addPlayerUserName = document.getElementById('formPlayerName');
 GameRecord.allGames = [];
+var molesBeenHit = false;
+var preloadedArrayForLocalStoreage = [{'name':'allie','score':0},{'name':'tyler','score':6},{'name':'bertha','score':4},{'name':'bertha','score':6},{'name':'jonathan','score':3},{'name':'jonathan','score':11},{'name':'tommy','score':12},{'name':'tommy','score':5},{'name':'galavangian','score':5},{'name':'tuppy','score':5},{'name':'earl tupper','score':5},{'name':'Rudy','score':5},{'name':'Django','score':5}];
 
 
 function loadLocalStoreage() {
   if(!localStorage.getItem('arrayOfGameObjects')){
     console.log('There is no arrayOfGameObjects in local storage');
-  } else {
-    console.log('arrayOfGameObjects exists');
-    var lsArrayForScoreDisplay = JSON.parse(localStorage.arrayOfGameObjects);
-    for(var i in lsArrayForScoreDisplay){
-      new GameRecord(lsArrayForScoreDisplay[i].name, lsArrayForScoreDisplay[i].score);
+    for(var i in preloadedArrayForLocalStoreage){
+      new GameRecord(preloadedArrayForLocalStoreage[i].name, preloadedArrayForLocalStoreage[i].score);
     }
-    console.log(GameRecord.allGames);
+  } else {
+    var lsArrayForScoreDisplay = JSON.parse(localStorage.arrayOfGameObjects);
+    for(var j in lsArrayForScoreDisplay){
+      new GameRecord(lsArrayForScoreDisplay[j].name, lsArrayForScoreDisplay[j].score);
+    }
   }
 }
 
@@ -101,13 +104,23 @@ function intervalFunc(){
 
 //create random number for index
 function newXIndex(){
+  regenMolesBeenHit();
   randIndex = Math.floor(Math.random() * Math.floor(arrayX.length));
   console.log('new X Index', randIndex);
 }
 
+function regenMolesBeenHit () {
+  molesBeenHit = false;
+}
+
 //Display mole on screen if POS Neg indicator is POS
 function drawMole(){
-  ctx.drawImage(imgMoleDwg, molePicOffset + arrayX[randIndex], molePicOffset + arrayY[randIndex], molePicWidth, molePicHeight);
+  if(molesBeenHit === true){
+    // pic of mole with heart or tears
+    ctx.drawImage(imgMoleDwg, molePicOffset + arrayX[randIndex] + molePicWidth / 4, molePicOffset + arrayY[randIndex] + molePicHeight / 3, molePicWidth / 2, molePicHeight / 2);
+  } else {
+    ctx.drawImage(imgMoleDwg, molePicOffset + arrayX[randIndex], molePicOffset + arrayY[randIndex], molePicWidth, molePicHeight);
+  }
 }
 
 //function to draw hole
@@ -128,9 +141,10 @@ function hitOrMiss(){
   if((mouseX >= (molePicOffset + arrayX[randIndex])
   && mouseX <= ((molePicOffset + arrayX[randIndex]) + molePicWidth))
   && (mouseY >= molePicOffset + arrayY[randIndex])
-  && mouseY <= (molePicOffset + arrayY[randIndex] + molePicHeight)){
-    // console.log('hit');
+  && mouseY <= (molePicOffset + arrayY[randIndex] + molePicHeight)
+  && molesBeenHit === false){
     numPoints++;
+    molesBeenHit = true;
   } else {
     // console.log('miss');
   }

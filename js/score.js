@@ -27,6 +27,12 @@ function getArrayFromLocalStorage () {
   console.log(lsArrayForScoreDisplay);
 }
 
+function sortArrayFromLocalStorage() {
+  lsArrayForScoreDisplay = lsArrayForScoreDisplay.sort(function (a, b) {
+    return b.score - a.score;
+  });
+}
+
 
 // function getLocalStorage () {
 // // show data being pushed to localStorage 
@@ -103,6 +109,6 @@ function displayScoreTable() {
 
 
 getArrayFromLocalStorage();
-
+sortArrayFromLocalStorage();
 displayScoreTable();
 // getLocalStorage();
