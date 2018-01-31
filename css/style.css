@@ -49,7 +49,7 @@ h1 {
 }
 h2 {
   margin-bottom: 10px;
-  font-size: 20px;
+  font-size: 30px;
   text-align: center;
 }
 h3 {
@@ -67,6 +67,7 @@ header h1 {
 header h2 {
   clear: both;
   text-align: center;
+  margin-top: 10px;
 }
 nav {
   float: right;
@@ -97,11 +98,19 @@ input#playerNameInput ,
 button {
   padding: 10px;
   font-size: 1.1rem;
+  border-radius: 10px;
+  border: 1px solid;
+}
+button:hover, button:focus {
+  color: yellowgreen;
 }
 #welcome button {
   float: right;
   position: relative;
   top: -60px;
+}
+#welcome h2 {
+  font-size: 20px;
 }
 button{
   background-color: #583102;
@@ -113,10 +122,14 @@ section{
   
 }
 section h2 {
-  text-align:center; position:relative
+  text-align:center; 
+  position:relative
 }
 section h2 span {
-  background-color: white; position: relative; top: -10px; padding: 0 10px;
+  background-color: white; 
+  position: relative; 
+  top: -10px; 
+  padding: 0 10px;
   font-size:20px;
 }
 table {
@@ -146,8 +159,9 @@ td {
   color: white;
   background-color: rgba(0,0,0, 0.4);
   border-radius: 15px;
-  text-align: center;
-  padding: 1em;
+  /* text-align: center; */
+  padding: 16px 38px;
+  min-height: 155px;
 }
 #bioS h3 {
   text-align: center;

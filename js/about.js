@@ -16,7 +16,13 @@ imgHole.src = 'assets/hole.png';
 //canvas traits
 var canvasWidth = 960;
 var canvasHeight = 500;
-var imgSize = 200;
+var holeSize = 195;
+var imgSize0 = 180;
+var imgSize1 = 180;
+var imgSize2 = 180;
+var imgSize3 = 180;
+var imgSize4 = 180;
+
 var mouseX;
 var mouseY;
 
@@ -30,21 +36,13 @@ function draw() {
 
   //clear canvas and draw background
   ctx.clearRect(0, 0, canvasWidth, canvasHeight);
-  //ctx.fillStyle = 'green';
-  //ctx.fillStyle = 'rgba(0, 0, 0, 0.5%)';
-  //ctx.fillRect(0, 0, canvasWidth, canvasHeight);
-
-  // Draw ABOUT US on top of PAGE
-  ctx.font = '25px Merriweather Sans';
-  ctx.fillStyle = 'white';
-  ctx.fillText('About Us', 430, 50);
 
   //draw five holes
-  ctx.drawImage(imgHole, 380, 50, imgSize, imgSize);
-  ctx.drawImage(imgHole, 100, 100, imgSize, imgSize);
-  ctx.drawImage(imgHole, 660, 100, imgSize, imgSize);
-  ctx.drawImage(imgHole, 200, 280, imgSize, imgSize);
-  ctx.drawImage(imgHole, 560, 280, imgSize, imgSize);
+  ctx.drawImage(imgHole, 380, 50, holeSize, holeSize);
+  ctx.drawImage(imgHole, 100, 100, holeSize, holeSize);
+  ctx.drawImage(imgHole, 660, 100, holeSize, holeSize);
+  ctx.drawImage(imgHole, 200, 280, holeSize, holeSize);
+  ctx.drawImage(imgHole, 560, 280, holeSize, holeSize);
 
   //draw portraits on canvas
   drawPortraits();
@@ -57,18 +55,46 @@ function draw() {
 var picOffset = 50;
 function drawPortraits(){
   
-
-  
   for (var i in portraits) {
     imgPortraits[i] = new Image();
     imgPortraits[i].src = portraits[i];
   }
+  ctx.drawImage(imgPortraits[0], 0, 0, imgSize0, imgSize0, 380 + picOffset / 2 , 50 + picOffset / 2, imgSize0 - picOffset, imgSize0 - picOffset);
+  ctx.drawImage(imgPortraits[1], 0, 0, imgSize1, imgSize1, 105 + picOffset / 2 , 100 + picOffset / 2, imgSize1 - picOffset, imgSize1 - picOffset);
+  ctx.drawImage(imgPortraits[2], 0, 0, imgSize2, imgSize2, 660 + picOffset / 2 , 100 + picOffset / 2, imgSize2 - picOffset, imgSize2 - picOffset);
+  ctx.drawImage(imgPortraits[3], 0, 0, imgSize3, imgSize3, 205 + picOffset / 2 , 280 + picOffset / 2, imgSize3 - picOffset, imgSize3 - picOffset);
+  ctx.drawImage(imgPortraits[4], 0, 0, imgSize4, imgSize4, 560 + picOffset / 2 , 280 + picOffset / 2, imgSize4 - picOffset, imgSize4 - picOffset);
+}
 
-  ctx.drawImage(imgPortraits[0], 0, 0, imgSize, imgSize, 380 + picOffset / 2 , 50 + picOffset / 2, imgSize - picOffset, imgSize - picOffset);
-  ctx.drawImage(imgPortraits[1], 0, 0, imgSize, imgSize, 100 + picOffset / 2 , 100 + picOffset / 2, imgSize - picOffset, imgSize - picOffset);
-  ctx.drawImage(imgPortraits[2], 0, 0, imgSize, imgSize, 660 + picOffset / 2 , 100 + picOffset / 2, imgSize - picOffset, imgSize - picOffset);
-  ctx.drawImage(imgPortraits[3], 0, 0, imgSize, imgSize, 200 + picOffset / 2 , 280 + picOffset / 2, imgSize - picOffset, imgSize - picOffset);
-  ctx.drawImage(imgPortraits[4], 0, 0, imgSize, imgSize, 560 + picOffset / 2 , 280 + picOffset / 2, imgSize - picOffset, imgSize - picOffset);
+//Expands the size of images once mouse hovers-over
+function imgExpander(){
+  if(mouseX > 125 && mouseX < 275 && mouseY > 126 && mouseY < 273 && imgSize1 < 500){
+    imgSize1 += 10;
+  }else if (mouseX > 125 && mouseX < 275 && mouseY > 126 && mouseY < 273 && imgSize1 === 500) {
+    imgSize1 = 500;
+  }else if(mouseX > 225 && mouseX < 370 && mouseY > 306 && mouseY < 455 && imgSize3 < 500){
+    imgSize3 += 10;
+  }else if (mouseX > 225 && mouseX < 370 && mouseY > 306 && mouseY < 455 && imgSize3 === 500) {
+    imgSize3 = 500;
+  }else if(mouseX > 405 && mouseX < 550 && mouseY > 76 && mouseY < 224 && imgSize0 < 500){
+    imgSize0 += 10;
+  }else if (mouseX > 405 && mouseX < 550 && mouseY > 76 && mouseY < 224 && imgSize0 === 500) {
+    imgSize0 = 500;
+  }else if(mouseX > 584 && mouseX < 731 && mouseY > 306 && mouseY < 453 && imgSize4 < 500){
+    imgSize4 += 10;
+  }else if (mouseX > 584 && mouseX < 731 && mouseY > 306 && mouseY < 453 && imgSize4 === 500) {
+    imgSize4 = 500;
+  }else if(mouseX > 685 && mouseX < 830 && mouseY > 127 && mouseY < 272 && imgSize2 < 500){
+    imgSize2 += 10;
+  }else if (mouseX > 685 && mouseX < 830 && mouseY > 127 && mouseY < 272 && imgSize2 === 500) {
+    imgSize2 = 500;
+  }else{
+    imgSize0 = 180;
+    imgSize1 = 180;
+    imgSize2 = 180;
+    imgSize3 = 180;
+    imgSize4 = 180;
+  }
 }
 
 //get cursor Postion
@@ -81,7 +107,7 @@ function getCursorPosition(event){
 
 
 //Checks Cursor Position and renders ABOUT ME section
-function checkCursorP(){
+function displayBio(){
   if(mouseX > 125 && mouseX < 275 && mouseY > 126 && mouseY < 273){
     bioH.textContent = 'Haron Yunis';
     bioP.textContent = 'A software developer who\'s in love with javascript and the design of web applications. Seattle native, Go Hawks!';
@@ -117,11 +143,17 @@ function checkCursorP(){
   }
 }
 
+
+
 //Eventlistener for clicks to run corresponding functions
 canvas.addEventListener('click', function(e){
   getCursorPosition(e);
-  checkCursorP();
+  displayBio();
+});
+
+canvas.addEventListener('mousemove', function(e){
+  getCursorPosition(e);
+  imgExpander();
 });
 
 draw();
-
