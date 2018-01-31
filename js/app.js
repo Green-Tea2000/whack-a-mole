@@ -75,7 +75,7 @@ function draw() {
   }
   
   //draw point counter
-  ctx.font = '28px sans-serif';
+  ctx.font = '28px Merriweather Sans';
   ctx.fillStyle = 'white';
   ctx.fillText('Points: ' + numPoints, 25, 535);
   ctx.fillText('Timer: ' + (gameLengthLimit - timesDrawn), 175, 535);
