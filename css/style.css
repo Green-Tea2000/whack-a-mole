@@ -102,6 +102,10 @@ nav a:hover, nav a:focus {
   margin-bottom: 15px;
 }
 
+h3 {
+  font-size: 22px;
+}
+
 #leaveScorePage {
   background-color: rgb(77, 1, 148);
   font-family: 'Shrikhand', cursive;
