@@ -14,6 +14,7 @@ some possible colors:
 
 * {
   box-sizing: border-box;
+  background-color: rgb(240, 221, 198);
 }
 body {
   margin-top: 30px;
