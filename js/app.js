@@ -13,18 +13,20 @@ var gameSpeed = 2000; // how often a new mole is redrawm
 var addPlayerUserName = document.getElementById('formPlayerName');
 GameRecord.allGames = [];
 var molesBeenHit = false;
+var preloadedArrayForLocalStoreage = [{'name':'allie','score':0},{'name':'tyler','score':6},{'name':'bertha','score':4},{'name':'bertha','score':6},{'name':'jonathan','score':3},{'name':'jonathan','score':11},{'name':'tommy','score':12},{'name':'tommy','score':5},{'name':'galavangian','score':5},{'name':'tuppy','score':5},{'name':'earl tupper','score':5},{'name':'Rudy','score':5},{'name':'Django','score':5}];
 
 
 function loadLocalStoreage() {
   if(!localStorage.getItem('arrayOfGameObjects')){
     console.log('There is no arrayOfGameObjects in local storage');
-  } else {
-    console.log('arrayOfGameObjects exists');
-    var lsArrayForScoreDisplay = JSON.parse(localStorage.arrayOfGameObjects);
-    for(var i in lsArrayForScoreDisplay){
-      new GameRecord(lsArrayForScoreDisplay[i].name, lsArrayForScoreDisplay[i].score);
+    for(var i in preloadedArrayForLocalStoreage){
+      new GameRecord(preloadedArrayForLocalStoreage[i].name, preloadedArrayForLocalStoreage[i].score);
     }
-    console.log(GameRecord.allGames);
+  } else {
+    var lsArrayForScoreDisplay = JSON.parse(localStorage.arrayOfGameObjects);
+    for(var j in lsArrayForScoreDisplay){
+      new GameRecord(lsArrayForScoreDisplay[j].name, lsArrayForScoreDisplay[j].score);
+    }
   }
 }
 
