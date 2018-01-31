@@ -1,7 +1,7 @@
 'use strict';
 var numPoints = 0;
 var timesDrawn = 0;
-var gameLengthLimit = 700;
+var gameLengthLimit = 1500;
 var raf;
 var nIntervId;
 var mouseX;
@@ -9,26 +9,12 @@ var mouseY;
 var arrayX = [25, 120, 250, 450, 500, 700]; // x coordinates of holes and possible mole locations
 var arrayY = [25, 170, 250, 50, 350, 100]; // y coordinates of holes and possible mole locations
 var randIndex;
-var gameSpeed = 2000; // how often a new mole is redrawm
+var gameSpeed = 1000; // how often a new mole is redrawm
 var addPlayerUserName = document.getElementById('formPlayerName');
 GameRecord.allGames = [];
 var molesBeenHit = false;
 var preloadedArrayForLocalStoreage = [{'name':'allie','score':0},{'name':'tyler','score':6},{'name':'bertha','score':4},{'name':'bertha','score':6},{'name':'jonathan','score':3},{'name':'jonathan','score':11},{'name':'tommy','score':12},{'name':'tommy','score':5},{'name':'galavangian','score':5},{'name':'tuppy','score':5},{'name':'earl tupper','score':5},{'name':'Rudy','score':5},{'name':'Django','score':5}];
-
-
-function loadLocalStoreage() {
-  if(!localStorage.getItem('arrayOfGameObjects')){
-    console.log('There is no arrayOfGameObjects in local storage');
-    for(var i in preloadedArrayForLocalStoreage){
-      new GameRecord(preloadedArrayForLocalStoreage[i].name, preloadedArrayForLocalStoreage[i].score);
-    }
-  } else {
-    var lsArrayForScoreDisplay = JSON.parse(localStorage.arrayOfGameObjects);
-    for(var j in lsArrayForScoreDisplay){
-      new GameRecord(lsArrayForScoreDisplay[j].name, lsArrayForScoreDisplay[j].score);
-    }
-  }
-}
+var gameOn = false;
 
 //new mole image
 var imgMoleDwg = new Image();
@@ -51,6 +37,19 @@ var molePicOffset = 25;
 var picWidth = 150;
 var picHeight = 150;
 
+function loadLocalStoreage() {
+  if(!localStorage.getItem('arrayOfGameObjects')){
+    console.log('There is no arrayOfGameObjects in local storage');
+    for(var i in preloadedArrayForLocalStoreage){
+      new GameRecord(preloadedArrayForLocalStoreage[i].name, preloadedArrayForLocalStoreage[i].score);
+    }
+  } else {
+    var lsArrayForScoreDisplay = JSON.parse(localStorage.arrayOfGameObjects);
+    for(var j in lsArrayForScoreDisplay){
+      new GameRecord(lsArrayForScoreDisplay[j].name, lsArrayForScoreDisplay[j].score);
+    }
+  }
+}
 
 // Game constructor
 function GameRecord (name, score){
@@ -66,12 +65,11 @@ var ctx = canvas.getContext('2d');
 function draw() {
   //clear canvas and draw background
   ctx.clearRect(0, 0, canvasWidth, canvasHeight);
- // ctx.fillStyle = 'green';
-  //ctx.fillRect(0, 0, canvasWidth, canvasHeight);
   
   //draw holes
   for (var i in arrayX){
     drawHole(arrayX[i] + molePicOffset, arrayY[i] + molePicOffset);
+    console.log('drawHole been called');
   }
   
   //draw point counter
@@ -80,22 +78,22 @@ function draw() {
   ctx.fillText('Points: ' + numPoints, 25, 535);
   ctx.fillText('Timer: ' + (gameLengthLimit - timesDrawn), 175, 535);
   
-  //draw pic of mole on canvas
   drawMole();
-  
   // redraw frame until time is up
   if(timesDrawn < gameLengthLimit){
     raf = window.requestAnimationFrame(draw);
-    timesDrawn++;
+    if(gameOn){
+      timesDrawn++;
+    }
   } else {
     // cancel setInterval
     clearInterval(nIntervId);
     new GameRecord(JSON.parse(localStorage.localStoragePlayerName), numPoints);
     timesDrawn = 0;
+    gameOn = false;
   }
-}
 /* end of draw function  */
-
+}
 
 //a timed interval function that changes from Pos to Neg(used in screen indicator)
 function intervalFunc(){
@@ -150,13 +148,12 @@ function hitOrMiss(){
   }
 }
 
+
 // function for players to set their name, stores name in local storeage
 function addAPlayerName(event) {
   event.preventDefault();
-  console.log(event);
 
   var playerNameVariable = event.target.playerNameInput.value;
-  console.log(playerNameVariable);
 
   localStorage.setItem('localStoragePlayerName', JSON.stringify(playerNameVariable));
   
@@ -167,12 +164,14 @@ function addAPlayerName(event) {
     numPoints = 0;
     raf = 0;
     timesDrawn = 0;
-    console.log('raf', raf);
     intervalFunc();
     draw();
+    window.scrollTo(0,document.body.scrollHeight);
+    gameOn = true;
   } else {
     alert('Please enter a player name to start GameRecord.');
   }
+  
 }
 
 // Eventlistener for clicks to run corresponding functions
@@ -183,6 +182,8 @@ canvas.addEventListener('click', function(e){
 
 // Event listen for setting user name
 addPlayerUserName.addEventListener('submit', addAPlayerName);
+
+
 
 loadLocalStoreage();
 draw();
