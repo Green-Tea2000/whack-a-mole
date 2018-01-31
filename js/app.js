@@ -11,6 +11,21 @@ var arrayY = [25, 170, 250, 50, 350, 100]; // y coordinates of holes and possibl
 var randIndex;
 var gameSpeed = 900; // how often a new mole is redrawm
 var addPlayerUserName = document.getElementById('formPlayerName');
+GameRecord.allGames = [];
+
+
+function loadLocalStoreage() {
+  if(!localStorage.getItem('arrayOfGameObjects')){
+    console.log('There is no arrayOfGameObjects in local storage');
+  } else {
+    console.log('arrayOfGameObjects exists');
+    var lsArrayForScoreDisplay = JSON.parse(localStorage.arrayOfGameObjects);
+    for(var i in lsArrayForScoreDisplay){
+      new GameRecord(lsArrayForScoreDisplay[i].name, lsArrayForScoreDisplay[i].score);
+    }
+    console.log(GameRecord.allGames);
+  }
+}
 
 //new mole image
 var imgMoleDwg = new Image();
@@ -33,8 +48,6 @@ var molePicOffset = 25;
 var picWidth = 150;
 var picHeight = 150;
 
-// GameRecord.allGames array - needs eventually to check if local storage of this exists and if so set this equal to that.
-GameRecord.allGames = [];
 
 // Game constructor
 function GameRecord (name, score){
@@ -44,8 +57,7 @@ function GameRecord (name, score){
   localStorage.arrayOfGameObjects = JSON.stringify(GameRecord.allGames); // put GameRecord.allGames in lcoalstorage
 }
 
-
-//     beginning of draw
+/*  beginning of draw function  */
 var canvas = document.getElementById('game-screen');
 var ctx = canvas.getContext('2d');
 function draw() {
@@ -53,21 +65,21 @@ function draw() {
   ctx.clearRect(0, 0, canvasWidth, canvasHeight);
   ctx.fillStyle = 'green';
   ctx.fillRect(0, 0, canvasWidth, canvasHeight);
-
+  
   //draw holes
   for (var i in arrayX){
     drawHole(arrayX[i] + molePicOffset, arrayY[i] + molePicOffset);
   }
-
+  
   //draw point counter
   ctx.font = '28px sans-serif';
   ctx.fillStyle = 'white';
   ctx.fillText('Points: ' + numPoints, 25, 535);
   ctx.fillText('Timer: ' + (gameLengthLimit - timesDrawn), 175, 535);
-
+  
   //draw pic of mole on canvas
   drawMole();
-
+  
   // redraw frame until time is up
   if(timesDrawn < gameLengthLimit){
     raf = window.requestAnimationFrame(draw);
@@ -75,13 +87,11 @@ function draw() {
   } else {
     // cancel setInterval
     clearInterval(nIntervId);
-    // console.log('raf', raf, 'timesDrawn', timesDrawn);
     new GameRecord(JSON.parse(localStorage.localStoragePlayerName), numPoints);
     timesDrawn = 0;
-    // console.log('raf', raf, 'timesDrawn', timesDrawn);
   }
 }
-//       end of draw function
+/* end of draw function  */
 
 
 //a timed interval function that changes from Pos to Neg(used in screen indicator)
@@ -104,7 +114,6 @@ function drawMole(){
 function drawHole(x,y){
   ctx.drawImage(imgHole, x, y, picWidth, picHeight);
 }
-
 
 //get cursor Postion
 function getCursorPosition(event){
@@ -152,8 +161,6 @@ function addAPlayerName(event) {
   }
 }
 
-
-
 // Eventlistener for clicks to run corresponding functions
 canvas.addEventListener('click', function(e){
   getCursorPosition(e);
@@ -163,27 +170,4 @@ canvas.addEventListener('click', function(e){
 // Event listen for setting user name
 addPlayerUserName.addEventListener('submit', addAPlayerName);
 
-
-//when timer reaches certian limit stop user from being able to get more points
-// Option.1 remove event listener
-// O2. change event listener
-// O3. establish var ifTime <
-
-
-// draw canvas on page load
-
-// function checkIfTimeIsUp() {
-//   // if(timesDrawn === gameLengthLimit){
-//   if(raf === 300){
-
-//   }
-//     console.log('raf', raf);
-//     window.clearInterval(nIntervId);
-//     window.cancelAnimationFrame(raf);
-//     console.log(nIntervId);
-//     new Game(localStorage.localStoragePlayerName, numPoints);
-//     // console.log('just made an object: ' + GameRecord.allGames);
-//   } else {
-//     timesDrawn++;
-//   }
-// }
+loadLocalStoreage();
