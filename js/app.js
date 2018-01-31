@@ -9,9 +9,10 @@ var mouseY;
 var arrayX = [25, 120, 250, 450, 500, 700]; // x coordinates of holes and possible mole locations
 var arrayY = [25, 170, 250, 50, 350, 100]; // y coordinates of holes and possible mole locations
 var randIndex;
-var gameSpeed = 900; // how often a new mole is redrawm
+var gameSpeed = 2000; // how often a new mole is redrawm
 var addPlayerUserName = document.getElementById('formPlayerName');
 GameRecord.allGames = [];
+var molesBeenHit = false;
 
 
 function loadLocalStoreage() {
@@ -101,13 +102,23 @@ function intervalFunc(){
 
 //create random number for index
 function newXIndex(){
+  regenMolesBeenHit();
   randIndex = Math.floor(Math.random() * Math.floor(arrayX.length));
   console.log('new X Index', randIndex);
 }
 
+function regenMolesBeenHit () {
+  molesBeenHit = false;
+}
+
 //Display mole on screen if POS Neg indicator is POS
 function drawMole(){
-  ctx.drawImage(imgMoleDwg, molePicOffset + arrayX[randIndex], molePicOffset + arrayY[randIndex], molePicWidth, molePicHeight);
+  if(molesBeenHit === true){
+    // pic of mole with heart or tears
+    ctx.drawImage(imgMoleDwg, molePicOffset + arrayX[randIndex] + molePicWidth / 4, molePicOffset + arrayY[randIndex] + molePicHeight / 3, molePicWidth / 2, molePicHeight / 2);
+  } else {
+    ctx.drawImage(imgMoleDwg, molePicOffset + arrayX[randIndex], molePicOffset + arrayY[randIndex], molePicWidth, molePicHeight);
+  }
 }
 
 //function to draw hole
@@ -128,9 +139,10 @@ function hitOrMiss(){
   if((mouseX >= (molePicOffset + arrayX[randIndex])
   && mouseX <= ((molePicOffset + arrayX[randIndex]) + molePicWidth))
   && (mouseY >= molePicOffset + arrayY[randIndex])
-  && mouseY <= (molePicOffset + arrayY[randIndex] + molePicHeight)){
-    // console.log('hit');
+  && mouseY <= (molePicOffset + arrayY[randIndex] + molePicHeight)
+  && molesBeenHit === false){
     numPoints++;
+    molesBeenHit = true;
   } else {
     // console.log('miss');
   }
