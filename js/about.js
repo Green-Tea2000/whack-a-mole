@@ -30,14 +30,6 @@ function draw() {
 
   //clear canvas and draw background
   ctx.clearRect(0, 0, canvasWidth, canvasHeight);
-  //ctx.fillStyle = 'green';
-  //ctx.fillStyle = 'rgba(0, 0, 0, 0.5%)';
-  //ctx.fillRect(0, 0, canvasWidth, canvasHeight);
-
-  // Draw ABOUT US on top of PAGE
-  ctx.font = '25px Merriweather Sans';
-  ctx.fillStyle = 'white';
-  ctx.fillText('About Us', 430, 50);
 
   //draw five holes
   ctx.drawImage(imgHole, 380, 50, imgSize, imgSize);
