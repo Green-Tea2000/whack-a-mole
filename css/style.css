@@ -107,7 +107,13 @@ h3 {
 
 #leaveScorePage {
   background-color: rgb(66, 55, 40);
-  font-family: 'Shrikhand', cursive;
   font-size: 24px;
+  color: rgb(240, 221, 198);
+  padding: 15px;
+}
+
+#leaveScorePage a {
+  text-decoration: none;
+  background-color: rgb(66, 55, 40);
   color: rgb(240, 221, 198);
 }
