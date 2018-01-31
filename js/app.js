@@ -66,8 +66,8 @@ var ctx = canvas.getContext('2d');
 function draw() {
   //clear canvas and draw background
   ctx.clearRect(0, 0, canvasWidth, canvasHeight);
-  ctx.fillStyle = 'green';
-  ctx.fillRect(0, 0, canvasWidth, canvasHeight);
+ // ctx.fillStyle = 'green';
+  //ctx.fillRect(0, 0, canvasWidth, canvasHeight);
   
   //draw holes
   for (var i in arrayX){
@@ -75,7 +75,7 @@ function draw() {
   }
   
   //draw point counter
-  ctx.font = '28px sans-serif';
+  ctx.font = '28px Merriweather Sans';
   ctx.fillStyle = 'white';
   ctx.fillText('Points: ' + numPoints, 25, 535);
   ctx.fillText('Timer: ' + (gameLengthLimit - timesDrawn), 175, 535);
@@ -185,3 +185,4 @@ canvas.addEventListener('click', function(e){
 addPlayerUserName.addEventListener('submit', addAPlayerName);
 
 loadLocalStoreage();
+draw();
