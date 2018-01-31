@@ -185,3 +185,4 @@ canvas.addEventListener('click', function(e){
 addPlayerUserName.addEventListener('submit', addAPlayerName);
 
 loadLocalStoreage();
+draw();

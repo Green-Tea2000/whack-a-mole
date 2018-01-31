@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Frijole|Merriweather+Sans" rel="stylesheet">
   </head>
-  <body>
+  <body class="home-page">
   <header>
     <h1><a href="index.html">Whack -a- Mole</a></h1>
     <nav>
@@ -15,25 +15,25 @@
         <li><a href="about.html">About</a></li>
       </ul>
     </nav>
-  </header>
-  <main>
+    <div id="welcome">
     <h2>Welcome, new mole hunter! Enter your name when you are ready to play!</h2>
-    
+    </div>
     <form id="formPlayerName">
       <fieldset>
 
         <label for="player-Name"></label>
-        <input name="playerNameInput" id="playerNameInput" type="text" required placeholder="Name"/>
 
         <button type="submit" id="addPlayer">Let's Play!</button>
-      </fieldset>
-    </form>
+        <input name="playerNameInput" id="playerNameInput" type="text" required placeholder="New Player"/>
 
-   
-    
-  </main>
+      </fieldset>
+    </form> 
+  </header>
+
+  <main>
   <canvas id="game-screen" width="960" height="560">
   </canvas>
+</main>
   <footer>
   </footer>
   

@@ -1,117 +1,76 @@
 /*
-some possible colors: 
-#27120f  dark brown
-#261210 dark brown 2
-#4a231f med red-brown
-
-#372a1a dk brown 3
-#614926 md brown
-#917d54 beige
-#ab9976 light beige
-#eddfc3 cream
-
+colors: 
 #583102 darkened mole brown
 #aa5c00 mole brown
 #9a836a mole beige
 #989898 mole claw gray
 */
 
-
 * {
   box-sizing: border-box;
 }
 body {
-  margin-top: 30px;
+  margin-top: 10px;
   font-family: 'Merriweather Sans', sans-serif;
-  /* color: #372a1a; */
   line-height: 1.45;
   background-image: url(http://eskipaper.com/images/grass-background-28.jpg);
   font-size: 16px;
+  color: #fff;
 }
-header, main{
+header ,
+.scores-page main{
+  background-color: rgba(0,0,0, 0.5);
+  border-radius: 15px;
+}
+.scores-page header {
+  margin-bottom: 15px;
+}
+.scores-page main {
+  padding-top: 15px;
+}
+header, main {
   clear: both;
-  width: 960px;
   margin: 0 auto;
-  /* background-color: rgb(240, 221, 198); */
-  background-color: rgba(254,254, 254, 0.8);
-  background-color: rgba(0,0,0, 0.4);
-    color: white;
+  width: 960px;
+  color: white;
 }
-header h2 {
-  float: left;
+main {
+  width: 960px;
+}
+header {
+  padding: 5px 30px;
+  overflow: auto;
 }
 h1 {
   font-size: 38px;
   text-align: center;
   font-variant: small-caps;
-}
-h1{
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
-  display: inline;
-  float: left;
+
 }
 h2 {
-  padding-top: 0.5em;
-  margin-bottom: 1em;
+  margin-bottom: 10px;
   font-size: 20px;
   text-align: center;
 }
 h3 {
   margin-bottom: 0.3em;
-    font-size: 22px;
-}
-nav {
-  float: right;
+  font-size: 22px;
 }
 p {
   line-height: 1.5;
   margin-bottom: 0.7em;
 }
-form {
-  margin-bottom: 25px;
-  text-align: center;
-}
-section{
-  margin:15px;
-  overflow: auto;
-  
-}
-
-section h2 {
-  text-align:center; position:relative
-}
-
-section h2 span {
-  background-color: white; position: relative; top: -10px; padding: 0 10px;
-  font-size:20px;
-}
-
-table {
-  width: 500px;
-  margin: 0 auto 25px;
-  padding: 2px 10px;
-}
-th { 
-  margin: 5px;
-  padding: 2px 10px;
-}
-
-th, td {
-  border: 3px solid hsl(120, 100%, 25%);
-}
-
-td {
-  padding: 5px 5px 5px 10px;
-}
-
-header {
-  padding-bottom: 15px;
-  overflow: auto;
-}
 header h1 {
   font-family: frijole, sans-serif;
-  color: #372a1a;
+  display: inline;
+}
+header h2 {
+  clear: both;
+  text-align: center;
+}
+nav {
+  float: right;
+  margin-top: 5px;
 }
 nav ul {
   text-align: center;
@@ -129,49 +88,67 @@ nav a, h1 a {
 nav a:hover, nav a:focus {
   color:brown;
 }
-
-#instructions {
-  margin-left: 200px;
-  margin-bottom: 15px;
+#formPlayerName {
+  clear: both;
+  text-align: center;
+  margin-bottom: 10px;
 }
-
 input#playerNameInput ,
-button#addPlayer {
+button {
   padding: 10px;
   font-size: 1.1rem;
 }
-button#addPlayer {
+#welcome button {
+  float: right;
+  position: relative;
+  top: -60px;
+}
+button{
   background-color: #583102;
   color: white;
 }
-
-h3 {
-  font-size: 22px;
+section{
+  margin:15px;
+  overflow: auto;
+  
 }
-
+section h2 {
+  text-align:center; position:relative
+}
+section h2 span {
+  background-color: white; position: relative; top: -10px; padding: 0 10px;
+  font-size:20px;
+}
+table {
+  width: 500px;
+  margin: 0 auto 25px;
+  padding: 2px 10px;
+}
+th { 
+  margin: 5px;
+  padding: 2px 10px;
+}
+th, td {
+  border: 3px solid hsl(120, 100%, 25%);
+}
+td {
+  padding: 5px 5px 5px 10px;
+}
 #leaveScorePage a {
   text-decoration: none;
   background-color: rgb(66, 55, 40);
-  color: rgb(240, 221, 198);
   color: white;
 }
-
 #bioS {
   width: 960px;
   margin-left: auto;
   margin-right: auto;
   color: white;
   background-color: rgba(0,0,0, 0.4);
+  border-radius: 15px;
   text-align: center;
   padding: 1em;
 }
 #bioS h3 {
   text-align: center;
-}
-canvas {
-  /* cursor: pointer;
-  cursor: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/9632/happy.png), auto; */
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
 }
