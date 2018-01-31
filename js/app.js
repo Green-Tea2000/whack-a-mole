@@ -66,8 +66,8 @@ var ctx = canvas.getContext('2d');
 function draw() {
   //clear canvas and draw background
   ctx.clearRect(0, 0, canvasWidth, canvasHeight);
-  ctx.fillStyle = 'green';
-  ctx.fillRect(0, 0, canvasWidth, canvasHeight);
+ // ctx.fillStyle = 'green';
+  //ctx.fillRect(0, 0, canvasWidth, canvasHeight);
   
   //draw holes
   for (var i in arrayX){

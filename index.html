@@ -17,26 +17,23 @@
     </nav>
   </header>
   <main>
-    <h2>Welcome, new mole hunter! Read instructions below, and then enter your name when you are ready to play!</h2>
-    <ul id="instructions">
-      <li>The moles will appear out of the displayed holes, one at a time</li>
-      <li>Whack as many as possible, by clicking on the mole picture, before they slink back in to hiding!</li>
-    </ul>
+    <h2>Welcome, new mole hunter! Enter your name when you are ready to play!</h2>
     
     <form id="formPlayerName">
       <fieldset>
 
-        <label for="player-Name">Player Name:</label>
-        <input name="playerNameInput" id="playerNameInput" type="text" required />
+        <label for="player-Name"></label>
+        <input name="playerNameInput" id="playerNameInput" type="text" required placeholder="Name"/>
 
         <button type="submit" id="addPlayer">Let's Play!</button>
       </fieldset>
     </form>
 
-    <canvas id="game-screen" width="960" height="560">
-    </canvas>
+   
     
   </main>
+  <canvas id="game-screen" width="960" height="560">
+  </canvas>
   <footer>
   </footer>
   

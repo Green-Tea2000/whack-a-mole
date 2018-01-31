@@ -30,8 +30,9 @@ function draw() {
 
   //clear canvas and draw background
   ctx.clearRect(0, 0, canvasWidth, canvasHeight);
-  ctx.fillStyle = 'green';
-  ctx.fillRect(0, 0, canvasWidth, canvasHeight);
+  //ctx.fillStyle = 'green';
+  //ctx.fillStyle = 'rgba(0, 0, 0, 0.5%)';
+  //ctx.fillRect(0, 0, canvasWidth, canvasHeight);
 
   // Draw ABOUT US on top of PAGE
   ctx.font = '25px Merriweather Sans';
