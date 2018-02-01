@@ -166,3 +166,19 @@ td {
 #bioS h3 {
   text-align: center;
 }
+.about-page canvas {
+  cursor: pointer;
+}
+.home-page canvas#game-screen.cursor1{
+  cursor: pointer;
+  cursor: url(../assets/icons/apple.png), pointer; 
+  cursor: url(../assets/icons/avocado.png), pointer; 
+}
+.home-page canvas#game-screen.apple{
+  cursor: pointer;
+  cursor: url(../assets/icons/apple.png), pointer; 
+}
+.home-page canvas#game-screen.avocado{
+  cursor: pointer;
+  cursor: url(../assets/icons/avocado.png), pointer; 
+}
