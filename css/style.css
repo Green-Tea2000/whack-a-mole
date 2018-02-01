@@ -87,7 +87,7 @@ nav a, h1 a {
   color: white;
 }
 nav a:hover, nav a:focus {
-  color:yellowgreen;
+  color:greenyellow;
 }
 
 #formPlayerName {
@@ -103,7 +103,7 @@ button {
   border: 1px solid;
 }
 button:hover, button:focus {
-  color: yellowgreen;
+  color: greenyellow;
 }
 #welcome button {
   float: right;
@@ -121,6 +121,9 @@ section{
   margin:15px;
   overflow: auto;
   
+}
+main {
+  position: relative;
 }
 section h2 {
   text-align:center; 
@@ -210,3 +213,45 @@ td {
   cursor: pointer;
   cursor: url(../assets/icons/hamburger.png), pointer; 
 }
+
+.hidden {
+  display: none;
+}
+
+#game-start, 
+#game-over {
+  position: absolute;
+  padding: 20px;
+  border-radius: 15px;
+} 
+#game-start {
+  padding-top: 75px;
+  width: 400px;
+  height: 200px;
+  background-color:  rgba(198, 0, 0, 0.9);
+  left: 280px;
+  top: 50px;
+}
+  #game-over {
+    top: 20px;
+    padding-top: 100px;
+    width: 960px;
+    height: 600px;
+    background-color: rgba(0,0,0, 0.5);
+  }
+  #game-over h2 {
+    font-family: frijole, 'Merriweather Sans', sans-serif;
+    font-size: 40px;
+    color: greenyellow;
+  }
+  #game-over p {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+  }
+  #game-over-buttons {
+    width: 241px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
