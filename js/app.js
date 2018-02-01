@@ -22,8 +22,12 @@ var newbiePlayerDiv;
 
 //new mole image
 var imgMoleDwg = new Image();
-imgMoleDwg.src = 'assets/mole_and_hole_pic.png';
-imgMoleDwg.alt = 'mole pic';
+imgMoleDwg.src = 'assets/hungry_mole_and_hole_pic.png';
+imgMoleDwg.alt = 'hungry mole pic';
+
+var imgHappyMoleDwg = new Image();
+imgHappyMoleDwg.src = 'assets/mole_and_hole_pic.png';
+imgHappyMoleDwg.alt = 'happy mole pic';
 
 //hole image
 var imgHole = new Image();
@@ -142,9 +146,10 @@ function regenMolesBeenHit () {
 //Display mole on screen if POS Neg indicator is POS
 function drawMole(){
   if(molesBeenHit === true){
-    // pic of mole with heart or tears
-    ctx.drawImage(imgMoleDwg, molePicOffset + arrayX[randIndex] + molePicWidth / 4, molePicOffset + arrayY[randIndex] + molePicHeight / 3, molePicWidth / 2, molePicHeight / 2);
+    // pic of happy mole
+    ctx.drawImage(imgHappyMoleDwg, molePicOffset + arrayX[randIndex], molePicOffset + arrayY[randIndex], molePicWidth, molePicHeight);
   } else {
+    // pic of begging mole
     ctx.drawImage(imgMoleDwg, molePicOffset + arrayX[randIndex], molePicOffset + arrayY[randIndex], molePicWidth, molePicHeight);
   }
 }
