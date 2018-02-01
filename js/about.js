@@ -110,7 +110,7 @@ function getCursorPosition(event){
 function displayBio(){
   if(mouseX > 125 && mouseX < 275 && mouseY > 126 && mouseY < 273){
     bioH.textContent = 'Haron Yunis';
-    bioP.textContent = 'A software developer who\'s in love with javascript and the design of web applications. Seattle native, Go Hawks!';
+    bioP.textContent = 'Aspiring software developer who\'s in love with javascript and the design of web applications. I specialize in UI development and applying creative solutions to enhance the user experience. A Seattle native, Go Hawks!';
     console.log('hit');
 
   }else if (mouseX > 225 && mouseX < 370 && mouseY > 306 && mouseY < 455){
