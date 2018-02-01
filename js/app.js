@@ -14,6 +14,8 @@ var gameSpeed = 2000; // how often a new mole is redrawm
 var addPlayerUserName = document.getElementById('formPlayerName');
 var newPlayerButtonListener = document.getElementById('new-player');
 var playAgainButtonEventListener = document.getElementById('play-again');
+var gameOverNewPlayerButtonListener = document.getElementById('game-over-new-player');
+var gameOverPlayAgainButtonEventListener = document.getElementById('game-over-play-again');
 GameRecord.allGames = [];
 var molesBeenHit = false;
 // import audio tag with mole cry
@@ -175,6 +177,7 @@ function draw() {
     gameSpeed = 2000;
     gameOn = false;
     restoreCursor();
+    displayGameOverScreen();
   }
 /* end of draw function  */
 }
@@ -261,6 +264,7 @@ function addAPlayerName(event) {
     raf = 0;
     timesDrawn = 0;
     intervalFunc();
+    hideGameOverScreen();
     draw();
     window.scrollTo(0,document.body.scrollHeight);
     gameOn = true;
@@ -274,6 +278,9 @@ function hideVetDivAndDisplayNewbieButtons() {
   // hide veteran player div
   veteranPlayerDiv = document.getElementById('veteran-player-div');
   veteranPlayerDiv.style.display = 'none';
+
+  //scroll to top
+  window.scrollTo(0, 0);
 
   // display newbie options
   newbiePlayerDiv = document.getElementById('newbie-player-div');
@@ -321,11 +328,22 @@ function turnOnGameOnStartGame() {
   numPoints = 0;
   raf = 0;
   timesDrawn = 0;
+  hideGameOverScreen();
   intervalFunc();
-  draw();
+  setTimeout(draw, 3000);
   window.scrollTo(0,document.body.scrollHeight);
   gameOn = true;
   changeCursor();
+}
+
+function displayGameOverScreen() {
+  var divEl = document.getElementById('game-over');
+  divEl.removeAttribute('class', 'hidden');
+}
+
+function hideGameOverScreen() {
+  var divEl = document.getElementById('game-over');
+  divEl.setAttribute('class', 'hidden');
 }
 
 // Event listen for setting user name
@@ -338,6 +356,10 @@ volumeToggle.addEventListener('click', function(e) {
 newPlayerButtonListener.addEventListener('click', hideVetDivAndDisplayNewbieButtons);
 
 playAgainButtonEventListener.addEventListener('click', turnOnGameOnStartGame);
+
+gameOverNewPlayerButtonListener.addEventListener('click', hideVetDivAndDisplayNewbieButtons);
+
+gameOverPlayAgainButtonEventListener.addEventListener('click', turnOnGameOnStartGame);
 
 loadLocalStoreage();
 draw();
