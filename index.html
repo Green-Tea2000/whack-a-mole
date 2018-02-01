@@ -10,9 +10,8 @@
     <title>Game Page</title>
     <meta property="og:title" content="Feed-A-Mole Game Page" />
     <meta property="og:type" content="website" />
-    <meta name="description" content="A fun and user-friendly game for all ages!!" />
     <meta property=”og:description” content="A fun and user-friendly game for all ages!!" />
-    <meta property="og:image" content="https://green-tea2000.github.io/whack-a-mole/assets/mole_pic.png" />
+    <meta property="og:image" content="assets/mole_pic.png" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:url" content="https://green-tea2000.github.io/whack-a-mole/index.html" />
   </head>
@@ -36,11 +35,13 @@
     </div>
     <form id="formPlayerName">
       <fieldset>
+
         <div id="newbie-player-div">
           <label for="player-Name"></label>
           <button type="submit" id="addPlayer">Let's Play!</button>
           <input name="playerNameInput" id="playerNameInput" type="text" required placeholder="New Player"/>
-        </div>   
+        </div>
+          
       </fieldset>
     </form>
   </header>
@@ -49,16 +50,6 @@
   <canvas id="game-screen"  width="960" height="560">
   </canvas>
 
-  <div id="game-over" class="hidden">
-    <h2>Congratulations!</h2>
-    <p>You made some new mole friends!</p>
-    <div id="game-over-buttons">
-    <button id="game-over-play-again">Play Again</button>
-    <button id="game-over-new-player">New Player</button>
-    <button id="game-over-view-scores"><a href="score.html">View Scores</a></button>
-  </div>
-
-</div>
   
 </main>
   <footer>
