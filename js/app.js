@@ -29,6 +29,8 @@ var welcomeBackMessage;
 var veteranPlayerDiv;
 var newbiePlayerDiv;
 
+var cursors = ['apple', 'avocado', 'cherries', 'cheese', 'cupcake', 'grapes', 'hamburger'];
+var lastCursor = '';
 
 //new mole image
 var imgMoleDwg = new Image();
@@ -139,6 +141,7 @@ function draw() {
     new GameRecord(JSON.parse(localStorage.localStoragePlayerName), numPoints);
     timesDrawn = 0;
     gameOn = false;
+    restoreCursor();
   }
 /* end of draw function  */
 }
@@ -194,8 +197,12 @@ function hitOrMiss() {
     && molesBeenHit === false) {
     numPoints++;
     molesBeenHit = true;
+
+    changeCursor();
+
     // plays mole cry.
     moleCry.play();
+
   } else {
     // console.log('miss');
   }
@@ -224,6 +231,7 @@ function addAPlayerName(event) {
     draw();
     window.scrollTo(0,document.body.scrollHeight);
     gameOn = true;
+    changeCursor();
   } else {
     alert('Please enter a player name to start GameRecord.');
   }  
@@ -251,6 +259,19 @@ function toggleImage() {
     moleCry.muted = true;
     volumeToggle.src = 'https://cdn2.iconfinder.com/data/icons/picons-essentials/57/music_off-512.png';
     console.log('mute');
+  }
+}
+
+function changeCursor(){
+  var cursorsIndex = Math.floor(Math.random() * cursors.length);
+  console.log('lastCursor: ' + lastCursor);
+  canvas.removeAttribute('class', lastCursor);
+  canvas.setAttribute('class', cursors[cursorsIndex]);
+  lastCursor = cursors[cursorsIndex];
+}
+function restoreCursor(){
+  for (var i in cursors){
+    canvas.removeAttribute('class', cursors[i]);
   }
 }
 
