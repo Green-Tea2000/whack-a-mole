@@ -15,6 +15,10 @@ GameRecord.allGames = [];
 var molesBeenHit = false;
 var preloadedArrayForLocalStoreage = [{'name':'allie','score':0},{'name':'tyler','score':6},{'name':'bertha','score':4},{'name':'bertha','score':6},{'name':'jonathan','score':3},{'name':'jonathan','score':11},{'name':'tommy','score':12},{'name':'tommy','score':5},{'name':'galavangian','score':5},{'name':'tuppy','score':5},{'name':'earl tupper','score':5},{'name':'Rudy','score':5},{'name':'Django','score':5}];
 var gameOn = false;
+var welcomeBackMessage;
+var veteranPlayerDiv;
+var newbiePlayerDiv;
+
 
 //new mole image
 var imgMoleDwg = new Image();
@@ -39,7 +43,7 @@ var picHeight = 150;
 
 function loadLocalStoreage() {
   if(!localStorage.getItem('arrayOfGameObjects')){
-    console.log('There is no arrayOfGameObjects in local storage');
+    // console.log('There is no arrayOfGameObjects in local storage');
     for(var i in preloadedArrayForLocalStoreage){
       new GameRecord(preloadedArrayForLocalStoreage[i].name, preloadedArrayForLocalStoreage[i].score);
     }
@@ -48,6 +52,31 @@ function loadLocalStoreage() {
     for(var j in lsArrayForScoreDisplay){
       new GameRecord(lsArrayForScoreDisplay[j].name, lsArrayForScoreDisplay[j].score);
     }
+  }
+  if(localStorage.getItem('localStoragePlayerName')){
+    // display the veteran player options
+    veteranPlayerDiv = document.getElementById('veteran-player-div');
+    veteranPlayerDiv.style.display = 'inline-block';
+
+    // hide newbie options
+    newbiePlayerDiv = document.getElementById('newbie-player-div');
+    newbiePlayerDiv.style.display = 'none';
+    console.log('newbie player div should be display none');
+
+    welcomeBackMessage = document.getElementById('welcomeBackMessage');
+    welcomeBackMessage.textContent = 'Welcome back ' + JSON.parse(localStorage.localStoragePlayerName) + '!';
+  } else {
+
+    // hide veteran player div
+    veteranPlayerDiv = document.getElementById('veteran-player-div');
+    veteranPlayerDiv.style.display = 'none';
+
+    // display newbie options
+    newbiePlayerDiv = document.getElementById('newbie-player-div');
+    newbiePlayerDiv.style.display = 'inline-block';
+
+    welcomeBackMessage = document.getElementById('welcomeBackMessage');
+    welcomeBackMessage.textContent = 'Welcome, new mole hunter! Enter your name when you are ready to play!';
   }
 }
 
@@ -69,7 +98,6 @@ function draw() {
   //draw holes
   for (var i in arrayX){
     drawHole(arrayX[i] + molePicOffset, arrayY[i] + molePicOffset);
-    console.log('drawHole been called');
   }
   
   //draw point counter
@@ -156,6 +184,8 @@ function addAPlayerName(event) {
   var playerNameVariable = event.target.playerNameInput.value;
 
   localStorage.setItem('localStoragePlayerName', JSON.stringify(playerNameVariable));
+
+  loadLocalStoreage();
   
   // Function check for username, if exists start game
   //add a playename
@@ -182,8 +212,6 @@ canvas.addEventListener('click', function(e){
 
 // Event listen for setting user name
 addPlayerUserName.addEventListener('submit', addAPlayerName);
-
-
 
 loadLocalStoreage();
 draw();
