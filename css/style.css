@@ -168,6 +168,11 @@ td {
   text-decoration: none;
   color: white;
 }
+
+#playerNameInput {
+  padding: 11px;
+}
+
 #bioS {
   width: 960px;
   margin-left: auto;
