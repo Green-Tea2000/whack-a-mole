@@ -1,11 +1,20 @@
 <!DOCTYPE html>
 <html>
-
 <head>
+ <meta charset="utf-8">
+
   <link rel="stylesheet" href="css/reset.css">
   <link href="https://fonts.googleapis.com/css?family=Shrikhand" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <link href="https://fonts.googleapis.com/css?family=Frijole|Merriweather+Sans" rel="stylesheet">
+
+  <title>Score Page</title>
+  <meta property="og:title" content="Whack-A-Mole Score Page" />
+  <meta property="og:type" content="website" />
+  <meta property=”og:description” content="A fun and user-friendly whack-a-mole game for all ages!!" />
+  <meta property="og:image" content="assets/mole_pic.png" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:url" content="" />
 </head>
 
 <body class="scores-page">
@@ -20,17 +29,14 @@
     </nav>
   </header>
   <main>
-    <h1>Scores</h1>
+    <h2>High Scores</h2>
     <section id="tabelSection"> 
 
       <table id="tableId">
       </table>
-      
+      <button id="leaveScorePage"><a href="index.html">Back to Game</a></button>
     </section>
   </main>
-  <footer>
-    <button id="leaveScorePage"><a href="index.html">Back to Game</a></button>
-  </footer>
   <script src="js/score.js"></script>
   <script src="js/aux.js"></script>
 </body>
