@@ -31,12 +31,19 @@
     </div>
     <form id="formPlayerName">
       <fieldset>
-        <label for="player-Name"></label>
-        <button type="submit" id="addPlayer">Let's Play!</button>
+        <div id="veteran-player-div">
+          <button id="play-again">Play Again</button>
+          <button id="new-player">New Player</button>
+        </div>
 
-        <input name="playerNameInput" id="playerNameInput" type="text" required placeholder="New Player"/>
+        <div id="newbie-player-div">
+          <label for="player-Name"></label>
+          <button type="submit" id="addPlayer">Let's Play!</button>
+          <input name="playerNameInput" id="playerNameInput" type="text" required placeholder="New Player"/>
+        </div>
+          
       </fieldset>
-    </form> 
+    </form>
   </header>
 
   <main>
