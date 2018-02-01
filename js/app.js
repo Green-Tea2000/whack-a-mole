@@ -48,6 +48,8 @@ function loadLocalStoreage() {
     for(var j in lsArrayForScoreDisplay){
       new GameRecord(lsArrayForScoreDisplay[j].name, lsArrayForScoreDisplay[j].score);
     }
+    var welcomeBackMessage = document.getElementById('welcomeBackMessage');
+    welcomeBackMessage.textContent = 'Welcome back ' + JSON.parse(localStorage.localStoragePlayerName) + '!';
   }
 }
 
