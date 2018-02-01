@@ -10,6 +10,7 @@ var arrayX = [25, 120, 250, 450, 500, 700]; // x coordinates of holes and possib
 var arrayY = [25, 170, 250, 50, 350, 100]; // y coordinates of holes and possible mole locations
 var randIndex;
 var gameSpeed = 2000; // how often a new mole is redrawm
+
 var addPlayerUserName = document.getElementById('formPlayerName');
 var newPlayerButtonListener = document.getElementById('new-player');
 var playAgainButtonEventListener = document.getElementById('play-again');
@@ -110,7 +111,7 @@ var ctx = canvas.getContext('2d');
 function draw() {
   //clear canvas and draw background
   ctx.clearRect(0, 0, canvasWidth, canvasHeight);
-  
+
   //draw holes
   for (var i in arrayX) {
     drawHole(arrayX[i] + molePicOffset, arrayY[i] + molePicOffset);
@@ -250,7 +251,7 @@ function addAPlayerName(event) {
   localStorage.setItem('localStoragePlayerName', JSON.stringify(playerNameVariable));
 
   loadLocalStoreage();
-  
+
 
   // Function check for username, if exists start game
   //add a playename
@@ -316,11 +317,6 @@ canvas.addEventListener('click', function(e) {
   hitOrMiss();
 });
 
-
-// function testConsoleLog() {
-//   console.log('test');
-// }
-
 function turnOnGameOnStartGame() {
   numPoints = 0;
   raf = 0;
@@ -338,7 +334,6 @@ addPlayerUserName.addEventListener('submit', addAPlayerName);
 volumeToggle.addEventListener('click', function(e) {
   toggleImage();
 });
-
 
 newPlayerButtonListener.addEventListener('click', hideVetDivAndDisplayNewbieButtons);
 
