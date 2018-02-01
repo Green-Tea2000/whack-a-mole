@@ -11,7 +11,7 @@ var mouseY;
 var arrayX = [25, 120, 250, 450, 500, 700]; // x coordinates of holes and possible mole locations
 var arrayY = [25, 170, 250, 50, 350, 100]; // y coordinates of holes and possible mole locations
 var randIndex;
-var gameSpeed = 1000; // how often a new mole is redrawm
+var gameSpeed = 1500; // how often a new mole is redrawm
 var addPlayerUserName = document.getElementById('formPlayerName');
 var newPlayerButtonListener = document.getElementById('new-player');
 var playAgainButtonEventListener = document.getElementById('play-again');
