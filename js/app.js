@@ -1,9 +1,7 @@
 'use strict';
 var numPoints = 0;
 var timesDrawn = 0;
-
-var gameLengthLimit = 1500;
-
+var gameLengthLimit = 4000;
 var raf;
 var nIntervId;
 var mouseX;
@@ -11,10 +9,13 @@ var mouseY;
 var arrayX = [25, 120, 250, 450, 500, 700]; // x coordinates of holes and possible mole locations
 var arrayY = [25, 170, 250, 50, 350, 100]; // y coordinates of holes and possible mole locations
 var randIndex;
-var gameSpeed = 1500; // how often a new mole is redrawm
+var gameSpeed = 2000; // how often a new mole is redrawm
+
 var addPlayerUserName = document.getElementById('formPlayerName');
 var newPlayerButtonListener = document.getElementById('new-player');
 var playAgainButtonEventListener = document.getElementById('play-again');
+var gameOverNewPlayerButtonListener = document.getElementById('game-over-new-player');
+var gameOverPlayAgainButtonEventListener = document.getElementById('game-over-play-again');
 GameRecord.allGames = [];
 var molesBeenHit = false;
 // import audio tag with mole cry
@@ -25,6 +26,8 @@ var gameOn = false;
 var welcomeBackMessage;
 var veteranPlayerDiv;
 var newbiePlayerDiv;
+var gameStatusMessageToUser;
+
 
 var cursors = ['apple', 'avocado', 'cherries', 'cheese', 'cupcake', 'grapes', 'hamburger'];
 var lastCursor = '';
@@ -54,6 +57,8 @@ var molePicOffset = 25;
 var picWidth = 150;
 var picHeight = 150;
 
+
+
 function loadLocalStoreage() {
   if(!localStorage.getItem('arrayOfGameObjects')){
     // console.log('There is no arrayOfGameObjects in local storage');
@@ -71,24 +76,24 @@ function loadLocalStoreage() {
     // display the veteran player options
     veteranPlayerDiv = document.getElementById('veteran-player-div');
     veteranPlayerDiv.style.display = 'inline-block';
-
+    
     // hide newbie options
     newbiePlayerDiv = document.getElementById('newbie-player-div');
     newbiePlayerDiv.style.display = 'none';
     console.log('newbie player div should be display none');
-
+    
     welcomeBackMessage = document.getElementById('welcomeBackMessage');
     welcomeBackMessage.textContent = 'Welcome back ' + JSON.parse(localStorage.localStoragePlayerName) + '!';
   } else {
-
+    
     // hide veteran player div
     veteranPlayerDiv = document.getElementById('veteran-player-div');
     veteranPlayerDiv.style.display = 'none';
-
+    
     // display newbie options
     newbiePlayerDiv = document.getElementById('newbie-player-div');
     newbiePlayerDiv.style.display = 'inline-block';
-
+    
     welcomeBackMessage = document.getElementById('welcomeBackMessage');
     welcomeBackMessage.textContent = 'Welcome, new mole friend! Enter your name when you are ready to play!';
   }
@@ -109,23 +114,54 @@ function draw() {
   //clear canvas and draw background
   ctx.clearRect(0, 0, canvasWidth, canvasHeight);
 
-  // ctx.fillStyle = 'green';
-  //ctx.fillRect(0, 0, canvasWidth, canvasHeight);
-
-  
   //draw holes
   for (var i in arrayX) {
     drawHole(arrayX[i] + molePicOffset, arrayY[i] + molePicOffset);
   }
-
+  
   //draw point counter
   ctx.font = '28px Merriweather Sans';
   ctx.fillStyle = 'white';
   ctx.fillText('Points: ' + numPoints, 25, 535);
   ctx.fillText('Timer: ' + (gameLengthLimit - timesDrawn), 175, 535);
-
+  
   //draw pic of mole on canvas
   drawMole();
+  
+  if (timesDrawn === 0) {
+    gameStatusMessageToUser = '';
+  } else if (timesDrawn <= 100){
+    gameStatusMessageToUser = 'Ready?';
+  } else if (timesDrawn <= 300){
+    gameStatusMessageToUser = 'Go!';
+  } else if (timesDrawn <= 1000){
+    gameStatusMessageToUser = 'Level Easy';
+  } else if (timesDrawn <= 1200){
+    gameStatusMessageToUser = 'Faster!';
+  } else if (timesDrawn <= 1800){
+    gameStatusMessageToUser = 'Level Medium';
+  } else if (timesDrawn <= 2000){
+    gameStatusMessageToUser = 'Faster!';
+  } else if (timesDrawn <= 3000){
+    gameStatusMessageToUser = 'Level Hard';
+  } else if (timesDrawn <= 3200){
+    gameStatusMessageToUser = 'Faster!';
+  } else if (timesDrawn <= 3999){
+    gameStatusMessageToUser = 'Level Maniac Mole!';
+  } else {
+    gameStatusMessageToUser = '';
+  }
+
+  ctx.font = '50px Merriweather Sans';
+  ctx.fillStyle = 'Black';
+  ctx.fillText(gameStatusMessageToUser, 25, 50);
+
+  if (timesDrawn === 1201 || timesDrawn === 2001 || timesDrawn === 3201){
+    console.log('Game speed changed to: ', gameSpeed);
+    clearInterval(nIntervId);
+    gameSpeed -= 500;
+    intervalFunc();
+  }
 
   // redraw frame until time is up
   if (timesDrawn < gameLengthLimit) {
@@ -138,8 +174,10 @@ function draw() {
     clearInterval(nIntervId);
     new GameRecord(JSON.parse(localStorage.localStoragePlayerName), numPoints);
     timesDrawn = 0;
+    gameSpeed = 2000;
     gameOn = false;
     restoreCursor();
+    displayGameOverScreen();
   }
 /* end of draw function  */
 }
@@ -153,7 +191,7 @@ function intervalFunc() {
 function newXIndex() {
   regenMolesBeenHit();
   randIndex = Math.floor(Math.random() * Math.floor(arrayX.length));
-  console.log('new X Index', randIndex);
+  // console.log('new X Index', randIndex);
 }
 
 function regenMolesBeenHit() {
@@ -216,7 +254,7 @@ function addAPlayerName(event) {
   localStorage.setItem('localStoragePlayerName', JSON.stringify(playerNameVariable));
 
   loadLocalStoreage();
-  
+
 
   // Function check for username, if exists start game
   //add a playename
@@ -226,19 +264,23 @@ function addAPlayerName(event) {
     raf = 0;
     timesDrawn = 0;
     intervalFunc();
+    hideGameOverScreen();
     draw();
     window.scrollTo(0,document.body.scrollHeight);
     gameOn = true;
     changeCursor();
   } else {
     alert('Please enter a player name to start GameRecord.');
-  }  
+  }
 }
 
 function hideVetDivAndDisplayNewbieButtons() {
   // hide veteran player div
   veteranPlayerDiv = document.getElementById('veteran-player-div');
   veteranPlayerDiv.style.display = 'none';
+
+  //scroll to top
+  window.scrollTo(0, 0);
 
   // display newbie options
   newbiePlayerDiv = document.getElementById('newbie-player-div');
@@ -282,20 +324,25 @@ canvas.addEventListener('click', function(e) {
   hitOrMiss();
 });
 
-
-function testConsoleLog() {
-  console.log('test');
-}
-
 function turnOnGameOnStartGame() {
   numPoints = 0;
   raf = 0;
   timesDrawn = 0;
+  hideGameOverScreen();
   intervalFunc();
-  draw();
+  setTimeout(draw, 3000);
   window.scrollTo(0,document.body.scrollHeight);
   gameOn = true;
   changeCursor();
+}
+
+function displayGameOverScreen() {
+  var divEl = document.getElementById('game-over');
+  divEl.removeAttribute('class', 'hidden');
+}
+function hideGameOverScreen() {
+  var divEl = document.getElementById('game-over');
+  divEl.setAttribute('class', 'hidden');
 }
 
 // Event listen for setting user name
@@ -305,10 +352,13 @@ volumeToggle.addEventListener('click', function(e) {
   toggleImage();
 });
 
-
 newPlayerButtonListener.addEventListener('click', hideVetDivAndDisplayNewbieButtons);
 
 playAgainButtonEventListener.addEventListener('click', turnOnGameOnStartGame);
+
+gameOverNewPlayerButtonListener.addEventListener('click', hideVetDivAndDisplayNewbieButtons);
+
+gameOverPlayAgainButtonEventListener.addEventListener('click', turnOnGameOnStartGame);
 
 loadLocalStoreage();
 draw();
