@@ -6,6 +6,7 @@ Games.allGames = [];
 //USING THE DOM TO ACCESS THE TABLE FROM SCORE.html
 var tableId = document.getElementById('tableId');
 
+var numberOfScoresToDisplay = 10;
 
 function Games(name, score) {
   this.name = name;
@@ -56,16 +57,16 @@ var tdEl;
 
 function displayScoreTable() {
   trEl = document.createElement('tr');
-  tdEl = document.createElement('td');
+  tdEl = document.createElement('th');
   tdEl.textContent = 'Player Name';
   trEl.appendChild(tdEl);
 
-  tdEl = document.createElement('td');
+  tdEl = document.createElement('th');
   tdEl.textContent = 'Score';
   trEl.appendChild(tdEl);
   tableId.appendChild(trEl);
 
-  for (var i = 0; i < lsArrayForScoreDisplay.length; i++) {
+  for (var i = 0; i < numberOfScoresToDisplay; i++) {
     trEl = document.createElement('tr');
     tdEl = document.createElement('td');
     tdEl.textContent = lsArrayForScoreDisplay[i].name;
