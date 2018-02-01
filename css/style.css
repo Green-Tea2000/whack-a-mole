@@ -225,7 +225,6 @@ button a {
 .hidden {
   display: none;
 }
-
 #game-over {
   position: absolute;
   padding: 20px;
@@ -254,7 +253,7 @@ button a {
 #game-over-buttons button {
   margin-right: 25px;
 }
+
 #game-over-buttons button:last-of-type {
   margin-right: 0;
 }
-

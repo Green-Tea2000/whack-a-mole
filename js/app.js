@@ -1,9 +1,7 @@
 'use strict';
 var numPoints = 0;
 var timesDrawn = 0;
-
 var gameLengthLimit = 1500;
-
 var raf;
 var nIntervId;
 var mouseX;
@@ -303,6 +301,7 @@ function displayGameOverScreen() {
   var divEl = document.getElementById('game-over');
   divEl.removeAttribute('class', 'hidden');
 }
+
 function hideGameOverScreen() {
   var divEl = document.getElementById('game-over');
   divEl.setAttribute('class', 'hidden');
