@@ -2,6 +2,9 @@
 var numPoints = 0;
 var timesDrawn = 0;
 var gameLengthLimit = 1500;
+
+gameLengthLimit = 300;
+
 var raf;
 var nIntervId;
 var mouseX;
