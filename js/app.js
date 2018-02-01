@@ -13,6 +13,8 @@ var arrayY = [25, 170, 250, 50, 350, 100]; // y coordinates of holes and possibl
 var randIndex;
 var gameSpeed = 1000; // how often a new mole is redrawm
 var addPlayerUserName = document.getElementById('formPlayerName');
+var newPlayerButtonListener = document.getElementById('new-player');
+var playAgainButtonEventListener = document.getElementById('play-again');
 GameRecord.allGames = [];
 var molesBeenHit = false;
 
@@ -224,8 +226,17 @@ function addAPlayerName(event) {
     gameOn = true;
   } else {
     alert('Please enter a player name to start GameRecord.');
-  }
-  
+  }  
+}
+
+function hideVetDivAndDisplayNewbieButtons() {
+  // hide veteran player div
+  veteranPlayerDiv = document.getElementById('veteran-player-div');
+  veteranPlayerDiv.style.display = 'none';
+
+  // display newbie options
+  newbiePlayerDiv = document.getElementById('newbie-player-div');
+  newbiePlayerDiv.style.display = 'inline-block';
 }
 
 // Event listen for setting user name
@@ -248,9 +259,32 @@ canvas.addEventListener('click', function(e) {
   hitOrMiss();
 });
 
+
+function testConsoleLog() {
+  console.log('test');
+}
+
+function turnOnGameOnStartGame() {
+  numPoints = 0;
+  raf = 0;
+  timesDrawn = 0;
+  intervalFunc();
+  draw();
+  window.scrollTo(0,document.body.scrollHeight);
+  gameOn = true;
+}
+
+// Event listen for setting user name
+addPlayerUserName.addEventListener('submit', addAPlayerName);
+
 volumeToggle.addEventListener('click', function(e) {
   toggleImage();
 });
+
+
+newPlayerButtonListener.addEventListener('click', hideVetDivAndDisplayNewbieButtons);
+
+playAgainButtonEventListener.addEventListener('click', turnOnGameOnStartGame);
 
 loadLocalStoreage();
 draw();
