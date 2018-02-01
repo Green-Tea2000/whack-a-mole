@@ -36,13 +36,11 @@
     </div>
     <form id="formPlayerName">
       <fieldset>
-
         <div id="newbie-player-div">
           <label for="player-Name"></label>
           <button type="submit" id="addPlayer">Let's Play!</button>
           <input name="playerNameInput" id="playerNameInput" type="text" required placeholder="New Player"/>
-        </div>
-          
+        </div>   
       </fieldset>
     </form>
   </header>
@@ -51,6 +49,16 @@
   <canvas id="game-screen"  width="960" height="560">
   </canvas>
 
+  <div id="game-over" class="hidden">
+    <h2>Congratulations!</h2>
+    <p>You made some new mole friends!</p>
+    <div id="game-over-buttons">
+    <button id="game-over-play-again">Play Again</button>
+    <button id="game-over-new-player">New Player</button>
+    <button id="game-over-view-scores"><a href="score.html">View Scores</a></button>
+  </div>
+
+</div>
   
 </main>
   <footer>
