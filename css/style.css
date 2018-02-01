@@ -95,7 +95,14 @@ nav a:hover, nav a:focus {
   text-align: center;
   margin-bottom: 10px;
 }
-input#playerNameInput ,
+#veteran-player-div{
+  display:block;
+  width: 400px;
+  text-align:center; 
+  margin-left: auto;
+  margin-right: auto;
+
+}
 button {
   padding: 10px;
   font-size: 1.1rem;
@@ -168,10 +175,16 @@ button a {
   text-decoration: none;
   color: white;
 }
+
 #leaveScorePage a:hover,
 #leaveScorePage a:focus {
   color: greenyellow;
 }
+
+#playerNameInput {
+  padding: 11px;
+}
+
 #bioS {
   width: 960px;
   margin-left: auto;
