@@ -1,7 +1,7 @@
 'use strict';
 var numPoints = 0;
 var timesDrawn = 0;
-var gameLengthLimit = 700;
+var gameLengthLimit = 1700;
 var raf;
 var nIntervId;
 var mouseX;
@@ -13,18 +13,22 @@ var gameSpeed = 2000; // how often a new mole is redrawm
 var addPlayerUserName = document.getElementById('formPlayerName');
 GameRecord.allGames = [];
 var molesBeenHit = false;
-var preloadedArrayForLocalStoreage = [{'name':'allie','score':0},{'name':'tyler','score':6},{'name':'bertha','score':4},{'name':'bertha','score':6},{'name':'jonathan','score':3},{'name':'jonathan','score':11},{'name':'tommy','score':12},{'name':'tommy','score':5},{'name':'galavangian','score':5},{'name':'tuppy','score':5},{'name':'earl tupper','score':5},{'name':'Rudy','score':5},{'name':'Django','score':5}];
+// import audio tag with mole cry
+var moleCry = document.getElementById('mole-whacker');
+var volumeToggle = document.getElementById('volume');
+
+var preloadedArrayForLocalStoreage = [{ 'name': 'allie', 'score': 0 }, { 'name': 'tyler', 'score': 6 }, { 'name': 'bertha', 'score': 4 }, { 'name': 'bertha', 'score': 6 }, { 'name': 'jonathan', 'score': 3 }, { 'name': 'jonathan', 'score': 11 }, { 'name': 'tommy', 'score': 12 }, { 'name': 'tommy', 'score': 5 }, { 'name': 'galavangian', 'score': 5 }, { 'name': 'tuppy', 'score': 5 }, { 'name': 'earl tupper', 'score': 5 }, { 'name': 'Rudy', 'score': 5 }, { 'name': 'Django', 'score': 5 }];
 
 
 function loadLocalStoreage() {
-  if(!localStorage.getItem('arrayOfGameObjects')){
+  if (!localStorage.getItem('arrayOfGameObjects')) {
     console.log('There is no arrayOfGameObjects in local storage');
-    for(var i in preloadedArrayForLocalStoreage){
+    for (var i in preloadedArrayForLocalStoreage) {
       new GameRecord(preloadedArrayForLocalStoreage[i].name, preloadedArrayForLocalStoreage[i].score);
     }
   } else {
     var lsArrayForScoreDisplay = JSON.parse(localStorage.arrayOfGameObjects);
-    for(var j in lsArrayForScoreDisplay){
+    for (var j in lsArrayForScoreDisplay) {
       new GameRecord(lsArrayForScoreDisplay[j].name, lsArrayForScoreDisplay[j].score);
     }
   }
@@ -53,7 +57,7 @@ var picHeight = 150;
 
 
 // Game constructor
-function GameRecord (name, score){
+function GameRecord(name, score) {
   this.name = name;
   this.score = score;
   GameRecord.allGames.push(this);
@@ -66,25 +70,25 @@ var ctx = canvas.getContext('2d');
 function draw() {
   //clear canvas and draw background
   ctx.clearRect(0, 0, canvasWidth, canvasHeight);
- // ctx.fillStyle = 'green';
+  // ctx.fillStyle = 'green';
   //ctx.fillRect(0, 0, canvasWidth, canvasHeight);
-  
+
   //draw holes
-  for (var i in arrayX){
+  for (var i in arrayX) {
     drawHole(arrayX[i] + molePicOffset, arrayY[i] + molePicOffset);
   }
-  
+
   //draw point counter
   ctx.font = '28px Merriweather Sans';
   ctx.fillStyle = 'white';
   ctx.fillText('Points: ' + numPoints, 25, 535);
   ctx.fillText('Timer: ' + (gameLengthLimit - timesDrawn), 175, 535);
-  
+
   //draw pic of mole on canvas
   drawMole();
-  
+
   // redraw frame until time is up
-  if(timesDrawn < gameLengthLimit){
+  if (timesDrawn < gameLengthLimit) {
     raf = window.requestAnimationFrame(draw);
     timesDrawn++;
   } else {
@@ -98,24 +102,24 @@ function draw() {
 
 
 //a timed interval function that changes from Pos to Neg(used in screen indicator)
-function intervalFunc(){
+function intervalFunc() {
   nIntervId = setInterval(newXIndex, gameSpeed);
 }
 
 //create random number for index
-function newXIndex(){
+function newXIndex() {
   regenMolesBeenHit();
   randIndex = Math.floor(Math.random() * Math.floor(arrayX.length));
   console.log('new X Index', randIndex);
 }
 
-function regenMolesBeenHit () {
+function regenMolesBeenHit() {
   molesBeenHit = false;
 }
 
 //Display mole on screen if POS Neg indicator is POS
-function drawMole(){
-  if(molesBeenHit === true){
+function drawMole() {
+  if (molesBeenHit === true) {
     // pic of mole with heart or tears
     ctx.drawImage(imgMoleDwg, molePicOffset + arrayX[randIndex] + molePicWidth / 4, molePicOffset + arrayY[randIndex] + molePicHeight / 3, molePicWidth / 2, molePicHeight / 2);
   } else {
@@ -124,12 +128,12 @@ function drawMole(){
 }
 
 //function to draw hole
-function drawHole(x,y){
+function drawHole(x, y) {
   ctx.drawImage(imgHole, x, y, picWidth, picHeight);
 }
 
 //get cursor Postion
-function getCursorPosition(event){
+function getCursorPosition(event) {
   var rect = canvas.getBoundingClientRect();
   mouseX = event.clientX - rect.left;
   mouseY = event.clientY - rect.top;
@@ -137,14 +141,16 @@ function getCursorPosition(event){
 }
 
 //check whether click was inside mole area
-function hitOrMiss(){
-  if((mouseX >= (molePicOffset + arrayX[randIndex])
-  && mouseX <= ((molePicOffset + arrayX[randIndex]) + molePicWidth))
-  && (mouseY >= molePicOffset + arrayY[randIndex])
-  && mouseY <= (molePicOffset + arrayY[randIndex] + molePicHeight)
-  && molesBeenHit === false){
+function hitOrMiss() {
+  if ((mouseX >= (molePicOffset + arrayX[randIndex])
+    && mouseX <= ((molePicOffset + arrayX[randIndex]) + molePicWidth))
+    && (mouseY >= molePicOffset + arrayY[randIndex])
+    && mouseY <= (molePicOffset + arrayY[randIndex] + molePicHeight)
+    && molesBeenHit === false) {
     numPoints++;
     molesBeenHit = true;
+    // plays mole cry.
+    moleCry.play();
   } else {
     // console.log('miss');
   }
@@ -159,7 +165,7 @@ function addAPlayerName(event) {
   console.log(playerNameVariable);
 
   localStorage.setItem('localStoragePlayerName', JSON.stringify(playerNameVariable));
-  
+
   // Function check for username, if exists start game
   //add a playename
   if (localStorage.localStoragePlayerName) {
@@ -175,14 +181,29 @@ function addAPlayerName(event) {
   }
 }
 
-// Eventlistener for clicks to run corresponding functions
-canvas.addEventListener('click', function(e){
+// Event listen for setting user name
+addPlayerUserName.addEventListener('submit', addAPlayerName);
+
+//toggle volume on & off. also the image speaker on and off.
+function toggleImage() {
+  if (moleCry.muted) {
+    moleCry.muted = false;
+    volumeToggle.src = 'http://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Speaker_Icon.svg/500px-Speaker_Icon.svg.png';
+  } else {
+    moleCry.muted = true;
+    volumeToggle.src = 'https://cdn2.iconfinder.com/data/icons/picons-essentials/57/music_off-512.png';
+    console.log('mute');
+  }
+}
+
+canvas.addEventListener('click', function(e) {
   getCursorPosition(e);
   hitOrMiss();
 });
 
-// Event listen for setting user name
-addPlayerUserName.addEventListener('submit', addAPlayerName);
+volumeToggle.addEventListener('click', function(e) {
+  toggleImage();
+});
 
 loadLocalStoreage();
 draw();
