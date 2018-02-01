@@ -90,7 +90,7 @@ function loadLocalStoreage() {
     newbiePlayerDiv.style.display = 'inline-block';
 
     welcomeBackMessage = document.getElementById('welcomeBackMessage');
-    welcomeBackMessage.textContent = 'Welcome, new mole hunter! Enter your name when you are ready to play!';
+    welcomeBackMessage.textContent = 'Welcome, new mole friend! Enter your name when you are ready to play!';
   }
 }
 
