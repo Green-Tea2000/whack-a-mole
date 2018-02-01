@@ -177,11 +177,11 @@ td {
 .about-page canvas {
   cursor: pointer;
 }
-.home-page canvas#game-screen.cursor1{
-  cursor: pointer;
-  cursor: url(../assets/icons/apple.png), pointer; 
-  cursor: url(../assets/icons/avocado.png), pointer; 
+
+.home-page canvas#game-screen {
+  cursor: auto;
 }
+
 .home-page canvas#game-screen.apple{
   cursor: pointer;
   cursor: url(../assets/icons/apple.png), pointer; 
@@ -189,4 +189,24 @@ td {
 .home-page canvas#game-screen.avocado{
   cursor: pointer;
   cursor: url(../assets/icons/avocado.png), pointer; 
+}
+.home-page canvas#game-screen.cherries{
+  cursor: pointer;
+  cursor: url(../assets/icons/cherries.png), pointer; 
+}
+.home-page canvas#game-screen.cheese{
+  cursor: pointer;
+  cursor: url(../assets/icons/cheese.png), pointer; 
+}
+.home-page canvas#game-screen.cupcake{
+  cursor: pointer;
+  cursor: url(../assets/icons/cupcake.png), pointer; 
+}
+.home-page canvas#game-screen.grapes{
+  cursor: pointer;
+  cursor: url(../assets/icons/grapes.png), pointer; 
+}
+.home-page canvas#game-screen.hamburger{
+  cursor: pointer;
+  cursor: url(../assets/icons/hamburger.png), pointer; 
 }
