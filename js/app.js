@@ -17,13 +17,10 @@ var newPlayerButtonListener = document.getElementById('new-player');
 var playAgainButtonEventListener = document.getElementById('play-again');
 GameRecord.allGames = [];
 var molesBeenHit = false;
-
 // import audio tag with mole cry
 var moleCry = document.getElementById('mole-whacker');
 var volumeToggle = document.getElementById('volume');
-
-
-var preloadedArrayForLocalStoreage = [{'name':'allie','score':0},{'name':'tyler','score':6},{'name':'bertha','score':4},{'name':'bertha','score':6},{'name':'jonathan','score':3},{'name':'jonathan','score':11},{'name':'tommy','score':12},{'name':'tommy','score':5},{'name':'galavangian','score':5},{'name':'tuppy','score':5},{'name':'earl tupper','score':5},{'name':'Rudy','score':5},{'name':'Django','score':5}];
+var preloadedArrayForLocalStoreage = [{'name':'allie','score':0},{'name':'tyler','score':6},{'name':'earl tupper','score':5},{'name':'Rudy','score':5},{'name':'Django','score':5}];
 var gameOn = false;
 var welcomeBackMessage;
 var veteranPlayerDiv;
@@ -64,6 +61,7 @@ function loadLocalStoreage() {
       new GameRecord(preloadedArrayForLocalStoreage[i].name, preloadedArrayForLocalStoreage[i].score);
     }
   } else {
+    GameRecord.allGames = [];
     var lsArrayForScoreDisplay = JSON.parse(localStorage.arrayOfGameObjects);
     for(var j in lsArrayForScoreDisplay){
       new GameRecord(lsArrayForScoreDisplay[j].name, lsArrayForScoreDisplay[j].score);
@@ -245,6 +243,10 @@ function hideVetDivAndDisplayNewbieButtons() {
   // display newbie options
   newbiePlayerDiv = document.getElementById('newbie-player-div');
   newbiePlayerDiv.style.display = 'inline-block';
+
+  localStorage.removeItem('localStoragePlayerName');
+  
+  window.location.reload(true);
 }
 
 // Event listen for setting user name
