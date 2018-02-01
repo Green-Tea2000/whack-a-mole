@@ -213,6 +213,10 @@ function hideVetDivAndDisplayNewbieButtons() {
   // display newbie options
   newbiePlayerDiv = document.getElementById('newbie-player-div');
   newbiePlayerDiv.style.display = 'inline-block';
+
+  localStorage.removeItem('localStoragePlayerName');
+  
+  window.location.reload(true);
 }
 
 // Eventlistener for clicks to run corresponding functions
