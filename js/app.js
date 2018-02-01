@@ -75,7 +75,7 @@ function loadLocalStoreage() {
   if(localStorage.getItem('localStoragePlayerName')){
     // display the veteran player options
     veteranPlayerDiv = document.getElementById('veteran-player-div');
-    veteranPlayerDiv.style.display = 'inline-block';
+    veteranPlayerDiv.style.display = 'block';
     
     // hide newbie options
     newbiePlayerDiv = document.getElementById('newbie-player-div');
