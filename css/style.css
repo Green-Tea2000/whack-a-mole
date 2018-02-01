@@ -28,11 +28,14 @@ header ,
 .scores-page main {
   padding-top: 15px;
 }
-header, main {
+header, main, footer {
   clear: both;
   margin: 0 auto;
   width: 960px;
   color: white;
+}
+footer {
+  padding-left: 25px;
 }
 main {
   width: 960px;
@@ -181,7 +184,11 @@ button a {
 }
 
 #playerNameInput {
+  border-radius: 10px;
   padding: 11px;
+  border: 1px solid;
+  height: 42px;
+  font-size: 1rem;
 }
 
 #bioS {
