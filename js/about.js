@@ -5,11 +5,9 @@ var portraits = ['assets/jennifer.png', 'assets/haron.png', 'assets/jose.png', '
 var bioS = document.getElementById('bioS');
 var bioH = document.getElementById('bioH');
 var bioP = document.getElementById('bioP');
-
 var imgPortraits = [];
 
 //new hole image
-
 var imgHole = new Image();
 imgHole.src = 'assets/hole.png';
 
@@ -22,17 +20,15 @@ var imgSize1 = 180;
 var imgSize2 = 180;
 var imgSize3 = 180;
 var imgSize4 = 180;
-
 var mouseX;
 var mouseY;
 
 
 
-//     beginning of draw
+////////////////////BEGINNING OF DRAW 
 var canvas = document.getElementById('game-screen');
 var ctx = canvas.getContext('2d');
 function draw() {
- 
 
   //clear canvas and draw background
   ctx.clearRect(0, 0, canvasWidth, canvasHeight);
@@ -50,8 +46,10 @@ function draw() {
   //redraw frame
   window.requestAnimationFrame(draw);
 }
-//end of draw function
+///////////////////END OF DRAW FUNCTION
 
+
+//Draw Portraits function
 var picOffset = 50;
 function drawPortraits(){
   
@@ -96,6 +94,8 @@ function imgExpander(){
     imgSize4 = 180;
   }
 }
+
+
 
 //get cursor Postion
 function getCursorPosition(event){
