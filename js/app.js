@@ -11,6 +11,8 @@ var arrayY = [25, 170, 250, 50, 350, 100]; // y coordinates of holes and possibl
 var randIndex;
 var gameSpeed = 1000; // how often a new mole is redrawm
 var addPlayerUserName = document.getElementById('formPlayerName');
+var newPlayerButtonListener = document.getElementById('new-player');
+var playAgainButtonEventListener = document.getElementById('play-again');
 GameRecord.allGames = [];
 var molesBeenHit = false;
 var preloadedArrayForLocalStoreage = [{'name':'allie','score':0},{'name':'tyler','score':6},{'name':'bertha','score':4},{'name':'bertha','score':6},{'name':'jonathan','score':3},{'name':'jonathan','score':11},{'name':'tommy','score':12},{'name':'tommy','score':5},{'name':'galavangian','score':5},{'name':'tuppy','score':5},{'name':'earl tupper','score':5},{'name':'Rudy','score':5},{'name':'Django','score':5}];
@@ -200,8 +202,17 @@ function addAPlayerName(event) {
     gameOn = true;
   } else {
     alert('Please enter a player name to start GameRecord.');
-  }
-  
+  }  
+}
+
+function hideVetDivAndDisplayNewbieButtons() {
+  // hide veteran player div
+  veteranPlayerDiv = document.getElementById('veteran-player-div');
+  veteranPlayerDiv.style.display = 'none';
+
+  // display newbie options
+  newbiePlayerDiv = document.getElementById('newbie-player-div');
+  newbiePlayerDiv.style.display = 'inline-block';
 }
 
 // Eventlistener for clicks to run corresponding functions
@@ -210,8 +221,26 @@ canvas.addEventListener('click', function(e){
   hitOrMiss();
 });
 
+function testConsoleLog() {
+  console.log('test');
+}
+
+function turnOnGameOnStartGame() {
+  numPoints = 0;
+  raf = 0;
+  timesDrawn = 0;
+  intervalFunc();
+  draw();
+  window.scrollTo(0,document.body.scrollHeight);
+  gameOn = true;
+}
+
 // Event listen for setting user name
 addPlayerUserName.addEventListener('submit', addAPlayerName);
+
+newPlayerButtonListener.addEventListener('click', hideVetDivAndDisplayNewbieButtons);
+
+playAgainButtonEventListener.addEventListener('click', turnOnGameOnStartGame);
 
 loadLocalStoreage();
 draw();
