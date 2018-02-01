@@ -294,7 +294,7 @@ function turnOnGameOnStartGame() {
   timesDrawn = 0;
   hideGameOverScreen();
   intervalFunc();
-  setTimeout(draw, 3000);
+  draw();
   window.scrollTo(0,document.body.scrollHeight);
   gameOn = true;
   changeCursor();
