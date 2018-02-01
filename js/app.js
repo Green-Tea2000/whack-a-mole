@@ -295,6 +295,7 @@ function turnOnGameOnStartGame() {
   draw();
   window.scrollTo(0,document.body.scrollHeight);
   gameOn = true;
+  changeCursor();
 }
 
 // Event listen for setting user name
