@@ -75,7 +75,7 @@ function loadLocalStoreage() {
   if(localStorage.getItem('localStoragePlayerName')){
     // display the veteran player options
     veteranPlayerDiv = document.getElementById('veteran-player-div');
-    veteranPlayerDiv.style.display = 'inline-block';
+    veteranPlayerDiv.style.display = 'block';
     
     // hide newbie options
     newbiePlayerDiv = document.getElementById('newbie-player-div');
@@ -330,7 +330,7 @@ function turnOnGameOnStartGame() {
   timesDrawn = 0;
   hideGameOverScreen();
   intervalFunc();
-  setTimeout(draw, 3000);
+  draw();
   window.scrollTo(0,document.body.scrollHeight);
   gameOn = true;
   changeCursor();
@@ -340,6 +340,7 @@ function displayGameOverScreen() {
   var divEl = document.getElementById('game-over');
   divEl.removeAttribute('class', 'hidden');
 }
+
 function hideGameOverScreen() {
   var divEl = document.getElementById('game-over');
   divEl.setAttribute('class', 'hidden');

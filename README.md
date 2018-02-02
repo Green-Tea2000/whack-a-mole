@@ -1,4 +1,4 @@
-# whack-a-mole
+# feed-a-mole
 
 Our team built a game based on the classic whack-a-mole game with a focus on fun and user friendliness.
 
@@ -6,3 +6,8 @@ We used the Meyer Web CSS reset that is publicly available to normalize the view
 
 We used Canvas for the game and the About Us page.
 
+Food icons for custom cursors:
+Gastronomy Icon Set
+https://www.flaticon.com/packs/gastronomy-set
+Published by Smashicons, 2016	
+License: Flaticon Basic License 

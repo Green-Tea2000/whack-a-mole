@@ -28,7 +28,7 @@ header ,
 .scores-page main {
   padding-top: 15px;
 }
-header, main {
+header, main, footer {
   clear: both;
   margin: 0 auto;
   width: 960px;
@@ -40,6 +40,9 @@ main {
 header {
   padding: 5px 30px;
   overflow: auto;
+}
+footer {
+  padding-left: 25px;
 }
 h1 {
   font-size: 38px;
@@ -175,6 +178,7 @@ button a {
   text-decoration: none;
   color: white;
 }
+
 #leaveScorePage a:hover,
 #leaveScorePage a:focus {
   color: greenyellow;
@@ -182,6 +186,9 @@ button a {
 
 #playerNameInput {
   padding: 11px;
+  font-size: 1rem;
+  border-radius: 10px;
+  border: 1px solid #583102;
 }
 
 #bioS {
@@ -237,7 +244,6 @@ button a {
 .hidden {
   display: none;
 }
-
 #game-over {
   position: absolute;
   padding: 20px;
@@ -266,7 +272,7 @@ button a {
 #game-over-buttons button {
   margin-right: 25px;
 }
+
 #game-over-buttons button:last-of-type {
   margin-right: 0;
 }
-

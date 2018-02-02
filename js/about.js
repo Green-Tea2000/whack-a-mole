@@ -110,26 +110,26 @@ function getCursorPosition(event){
 function displayBio(){
   if(mouseX > 125 && mouseX < 275 && mouseY > 126 && mouseY < 273){
     bioH.textContent = 'Haron Yunis';
-    bioP.textContent = 'A software developer who\'s in love with javascript and the design of web applications. Seattle native, Go Hawks!';
+    bioP.textContent = 'Aspiring software developer who\'s in love with javascript and the design of web applications. I specialize in UI development and applying creative solutions to enhance user experience. A Seattle native, Go Hawks! Github: https://github.com/haronYunis Linkedin: https://www.linkedin.com/in/haron-yunis/' ;
     console.log('hit');
 
   }else if (mouseX > 225 && mouseX < 370 && mouseY > 306 && mouseY < 455){
     bioH.textContent = 'Tyler Fishbone';
     bioP.textContent = 'In a previous life I used rapid prototyping technologies to bring over 1,000 client projects (as well as a kickstarter)\
-    to life. I now develop powerful and easy to use software to enrich the lives of humans all over the globe.';
+    to life. I now develop powerful and easy to use software to enrich the lives of humans all over the globe. Github: https://github.com/tyler-fishbone Linkedin: https://www.linkedin.com/in/tylerfishbone/ ';
     console.log('hit');
 
   }else if (mouseX > 405 && mouseX < 550 && mouseY > 76 && mouseY < 224){
     bioH.textContent = 'Jennifer Piper';
     bioP.textContent = 'I love code, design, user experience, and how they fit together to make websites and apps that are functional and beautiful.\
-    I\'m at Code Fellows to level up my development skills before moving on to my next adventure.';
+    I\'m at Code Fellows to level up my development skills before moving on to my next adventure.  Github: https://github.com/jenwill Linkedin: https://www.linkedin.com/in/jennifer-williams-piper/';
     console.log('hit');
 
   }else if (mouseX > 584 && mouseX < 731 && mouseY > 306 && mouseY < 453){
     bioH.textContent = 'Patricia Raftery';
     bioP.textContent = 'I am an aspiring software developer who loves problem-solving and building products that are fun. Before Code Fellows\
     I worked at Bellevue College in the Disability Resource Center. I live in Issaquah with a cat and a dog. I look forward\
-    to improving myself through coding.';
+    to improving myself through coding. Github: https://github.com/Patricia888 Linkedin: https://www.linkedin.com/in/patricia-raftery/';
     console.log('hit');
 
   }else if (mouseX > 685 && mouseX < 830 && mouseY > 127 && mouseY < 272){
